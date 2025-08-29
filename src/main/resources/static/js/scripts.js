@@ -1,3 +1,5 @@
+let websocket = null;
+
 document.addEventListener("DOMContentLoaded", () => {
     const tickerTabs = document.querySelectorAll(".tab");
     const tickerPanels = document.querySelectorAll(".tab-panel");
@@ -54,20 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ohlcTabs.forEach(b => b.addEventListener("click", () => activateOhlc(b.dataset.ohlcTab)));
     newsTabs.forEach(b => b.addEventListener("click", () => activateNews(b.dataset.newsTab)));
 
-    // Initialize orderbook data
-    initializeOrderbook();
-    
-    // Initialize timeseries chart
-    initializeTimeseries();
-    
-    // Initialize OHLC data
-    initializeOhlc();
-    
-    // Initialize Trades data
-    initializeTrades();
-    
-    // Initialize News data
-    initializeNews();
+    // Initialize WebSocket connection
+    initializeWebSocket();
 })
 
 // submit Search
@@ -88,16 +78,54 @@ document.getElementById("live-toggle").addEventListener("change", (e) => {
   console.log("Live mode:", e.target.checked);
 });
 
-async function initializeOrderbook() {
-    try {
-        const response = await fetch('data/orderbook-data.json');
-        const orderbookData = await response.json();
-        
-        populateOrders('bid-orders', orderbookData.bids, 'bid');
-        populateOrders('ask-orders', orderbookData.asks, 'ask');
-    } catch (error) {
-        console.error('Error loading orderbook data:', error);
+function initializeWebSocket() {
+    websocket = new WebSocket('ws://localhost:8080/websocket');
+    
+    websocket.onopen = function(event) {
+        console.log('WebSocket connection established');
+    };
+    
+    websocket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        handleWebSocketMessage(data);
+    };
+    
+    websocket.onclose = function(event) {
+        console.log('WebSocket connection closed');
+        // Attempt to reconnect after 3 seconds
+        setTimeout(initializeWebSocket, 3000);
+    };
+    
+    websocket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+    };
+}
+
+function handleWebSocketMessage(data) {
+    switch(data.type) {
+        case 'orderbook':
+            updateOrderbook(data.content);
+            break;
+        case 'trades':
+            updateTrades(data.content);
+            break;
+        case 'ohlc':
+            updateOHLC(data.content);
+            break;
+        case 'timeseries':
+            updateTimeseries(data.content);
+            break;
+        case 'news':
+            updateNews(data.content);
+            break;
+        default:
+            console.log('Unknown message type:', data.type);
     }
+}
+
+function updateOrderbook(orderbookData) {
+    populateOrders('bid-orders', orderbookData.bids, 'bid');
+    populateOrders('ask-orders', orderbookData.asks, 'ask');
 }
 
 function populateOrders(containerId, orders, side) {
@@ -142,11 +170,17 @@ function getOrderColor(price, spreadMid) {
     else return 'order-brown';
 }
 
-async function initializeTimeseries() {
-  try {
-    const res = await fetch('data/timeseries-data.json');
-    const timeseriesData = await res.json();
+let timeseriesChart = null;
 
+function updateTimeseries(timeseriesData) {
+    if (!timeseriesChart) {
+        initializeTimeseriesChart(timeseriesData);
+    } else {
+        updateTimeseriesChart(timeseriesData);
+    }
+}
+
+function initializeTimeseriesChart(timeseriesData) {
     const ctx = document.getElementById('timeseries-chart').getContext('2d');
 
     // Register annotation plugin
@@ -195,7 +229,7 @@ async function initializeTimeseries() {
       }
     });
 
-    new Chart(ctx, {
+    timeseriesChart = new Chart(ctx, {
       type: 'line',
       data: {
         datasets: [{
@@ -266,20 +300,51 @@ async function initializeTimeseries() {
         }
       }
     });
-  } catch (err) {
-    console.error('Error loading timeseries data:', err);
-  }
 }
 
-async function initializeOhlc() {
-    try {
-        const response = await fetch('data/ohlc-data.json');
-        const ohlcData = await response.json();
-        
-        populateOhlcData(ohlcData.data);
-    } catch (error) {
-        console.error('Error loading OHLC data:', error);
-    }
+function updateTimeseriesChart(timeseriesData) {
+    // Create synthetic data like in initialization
+    const syntheticData = [];
+    
+    timeseriesData.prices.forEach(point => {
+        if (point.price !== null) {
+            let xPosition;
+            const time = point.time;
+            
+            if (time >= '09:00' && time < '11:00') {
+                const minutes = parseInt(time.split(':')[0]) * 60 + parseInt(time.split(':')[1]);
+                const start = 9 * 60;
+                const end = 11 * 60;
+                xPosition = 0.5 + (minutes - start) / (end - start);
+            } else if (time >= '11:00' && time < '13:00') {
+                const minutes = parseInt(time.split(':')[0]) * 60 + parseInt(time.split(':')[1]);
+                const start = 11 * 60;
+                const end = 13 * 60;
+                xPosition = 1.5 + (minutes - start) / (end - start);
+            } else if (time >= '13:00' && time < '15:00') {
+                const minutes = parseInt(time.split(':')[0]) * 60 + parseInt(time.split(':')[1]);
+                const start = 13 * 60;
+                const end = 15 * 60;
+                xPosition = 2.5 + (minutes - start) / (end - start);
+            } else if (time >= '15:00') {
+                const minutes = parseInt(time.split(':')[0]) * 60 + parseInt(time.split(':')[1]);
+                const start = 15 * 60;
+                const end = 16 * 60 + 30;
+                xPosition = 3.5 + (minutes - start) / (end - start);
+            }
+            
+            if (xPosition !== undefined) {
+                syntheticData.push({ x: xPosition, y: point.price });
+            }
+        }
+    });
+    
+    timeseriesChart.data.datasets[0].data = syntheticData;
+    timeseriesChart.update();
+}
+
+function updateOHLC(ohlcData) {
+    populateOhlcData(ohlcData.data);
 }
 
 function populateOhlcData(data) {
@@ -342,15 +407,8 @@ function populateOhlcData(data) {
     container.appendChild(table);
 }
 
-async function initializeTrades() {
-    try {
-        const response = await fetch('data/trades-data.json');
-        const tradesData = await response.json();
-        
-        populateTradesData(tradesData.trades);
-    } catch (error) {
-        console.error('Error loading trades data:', error);
-    }
+function updateTrades(tradesData) {
+    populateTradesData(tradesData.trades);
 }
 
 function populateTradesData(trades) {
@@ -377,15 +435,8 @@ function populateTradesData(trades) {
     });
 }
 
-async function initializeNews() {
-    try {
-        const response = await fetch('data/news-data.json');
-        const newsData = await response.json();
-        
-        populateNewsData('rr-news', newsData['rr-news']);
-    } catch (error) {
-        console.error('Error loading news data:', error);
-    }
+function updateNews(newsData) {
+    populateNewsData('rr-news', newsData['news']);
 }
 
 function populateNewsData(tabId, newsItems) {
