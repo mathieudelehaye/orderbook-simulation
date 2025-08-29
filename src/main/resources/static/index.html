@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orderbook Demo</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <link rel="icon" type="image/x-icon" href="https://www.google.com/favicon.ico">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2"></script>
+</head>
+<body>
+  <div class="orderbook-frame">
+    <div class="tab-bar">
+      <button class="tab" data-tab="LSE:RR">
+        LSE:RR
+      </button>
+      <button class="tab" data-tab="LSE:SXS">
+        LSE:SXS
+      </button>
+      <button class="tab" data-tab="LSE:DOCS">
+        LSE:DOCS
+      </button>
+    </div>
+
+    <div class="tab-panel" id="panel-LSE:RR">
+      <div class="panel-toolbar" role="toolbar" aria-label="Orderbook controles">
+        <div class="panel-toolbar-content">
+          <form class="search-group" onsubmit="return false">
+            <label for="q" class="visually-hidden">Search</label>
+            <input id="q" class="search-input" type="search" name="q" placeholder="Search..." />
+            <button type="button" class="btn btn-ghost">OK</button>
+            <button type="submit" class="btn btn-ghost">Search</button>
+          </form>
+  
+          <div class="controls-group">
+            <span class="toolbar-title">Level 3 Montage</span>
+            <select id="instrument" class="dropdown" aria-label="Instrument">
+              <option selected>-choose-</option>
+              <option>Instrument A</option>
+              <option>Instrument B</option>
+            </select>
+    
+            <input id="live-toggle" type="checkbox" class="visually-hidden" />
+            <label class="switch" for="live-toggle">
+              <span class="slider" aria-hidden="true"></span>
+              <span class="switch-label">Live</span>
+            </label>
+          </div>
+        </div>  
+      </div>
+      
+      <div class="main-content">
+        <div class="top-left-panel">
+          <div class="orderbook-section">
+            <div class="orderbook-tabs">
+              <button class="orderbook-tab" data-orderbook-tab="all-orders">
+                All orders
+              </button>
+              <button class="orderbook-tab" data-orderbook-tab="summary">
+                Summary
+              </button>
+            </div>
+            
+            <div class="orderbook-panel" id="orderbook-panel-all-orders">
+              <div class="orderbook-header">
+                <div class="price-info">
+                  <span class="current-price">Cur: 632.20</span>
+                  <span class="price-arrow up">▲</span>
+                  <span class="price-change">7.60 (1.22%)</span>
+                </div>
+                <div class="volume-info">
+                  <span class="volume-label">Vol:</span>
+                  <span class="volume-value">6,528,662</span>
+                </div>
+              </div>
+              <div class="orderbook-filters">
+                <div class="filter-group-left">
+                  <span class="filter-label">Buy Orders</span>
+                  <select id="buy-orders-filter" class="filter-dropdown">
+                    <option selected>All</option>
+                    <option>LSE</option>
+                    <option>AOX</option>
+                    <option>BATS</option>
+                    <option>CHIX</option>
+                  </select>
+                </div>
+                <div class="filter-group-right">
+                  <select id="sell-orders-filter" class="filter-dropdown">
+                    <option selected>All</option>
+                    <option>LSE</option>
+                    <option>AOX</option>
+                    <option>BATS</option>
+                    <option>CHIX</option>
+                  </select>
+                  <span class="filter-label">Sell Orders</span>
+                </div>
+              </div>
+              <div class="bid-ask-summary">
+                <span class="bid-orders">6</span>
+                <span class="bid-shares">4,605</span>
+                <span class="bid-price">632.20</span>
+                <span class="separator">-</span>
+                <span class="ask-price">632.40</span>
+                <span class="ask-shares">14,772</span>
+                <span class="ask-orders">23</span>
+              </div>
+              <div class="price-scale">
+                <div class="price-scale-container">
+                  <div class="bid-levels">
+                    <div class="price-level bid-level-1"></div>
+                    <div class="price-level bid-level-2"></div>
+                    <div class="price-level bid-level-3"></div>
+                    <div class="price-level bid-level-4"></div>
+                    <div class="price-level bid-level-5"></div>
+                  </div>
+                  <div class="spread-gap"></div>
+                  <div class="ask-levels">
+                    <div class="price-level ask-level-1"></div>
+                    <div class="price-level ask-level-2"></div>
+                    <div class="price-level ask-level-3"></div>
+                    <div class="price-level ask-level-4"></div>
+                    <div class="price-level ask-level-5"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="orderbook-table-container">
+                <div class="orderbook-table">
+                  <div class="orderbook-columns">
+                    <div class="bid-column">
+                      <div class="orders-container" id="bid-orders">
+                      </div>
+                    </div>
+                    <div class="ask-column">
+                      <div class="orders-container" id="ask-orders">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scrollbar-container">
+                    <div class="scrollbar disabled"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="orderbook-panel" id="orderbook-panel-summary">
+              <div class="summary-content">
+                Summary panel
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="top-right-panel">
+          <div class="data-section">
+            <div class="chart-section">
+              <div class="chart-tabs">
+                <button class="chart-tab" data-chart-tab="stats">Stats</button>
+                <button class="chart-tab" data-chart-tab="histogram">Histogram</button>
+                <button class="chart-tab" data-chart-tab="chart">Chart</button>
+                <button class="chart-tab" data-chart-tab="tickscope">TickScope</button>
+              </div>
+              <div class="chart-panel" id="chart-panel-stats">
+                Stats content
+              </div>
+              <div class="chart-panel" id="chart-panel-histogram">
+                Histogram content
+              </div>
+              <div class="chart-panel" id="chart-panel-chart">
+                <canvas id="timeseries-chart"></canvas>
+              </div>
+              <div class="chart-panel" id="chart-panel-tickscope">
+                TickScope content
+              </div>
+            </div>
+            
+            <div class="ohlc-section">
+              <div class="ohlc-tabs">
+                <button class="ohlc-tab" data-ohlc-tab="quotes-info">Quotes Info</button>
+                <button class="ohlc-tab" data-ohlc-tab="auction">Auction</button>
+                <button class="ohlc-tab" data-ohlc-tab="indices">Indices</button>
+                <button class="ohlc-tab" data-ohlc-tab="flow">Flow</button>
+              </div>
+              <div class="ohlc-panel" id="ohlc-panel-quotes-info">
+                <div class="ohlc-data-container" id="ohlc-data">
+                </div>
+              </div>
+              <div class="ohlc-panel" id="ohlc-panel-auction">
+                Auction content
+              </div>
+              <div class="ohlc-panel" id="ohlc-panel-indices">
+                Indices content
+              </div>
+              <div class="ohlc-panel" id="ohlc-panel-flow">
+                Flow content
+              </div>
+            </div>
+            
+            <div class="trades-section">
+              <div class="trades-tabs">
+                <button class="trades-tab trades-tab-active">Trades</button>
+              </div>
+              <div class="trades-table-panel">
+                <div class="trades-table">
+                  <div class="trades-data" id="trades-data">
+                  </div>
+                </div>
+                <div class="trades-scrollbar-container">
+                  <div class="trades-scrollbar disabled"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="secondary-content">
+        <div class="news-section">
+          <div class="news-tabs">
+            <button class="news-tab" data-news-tab="news">News</button>
+            <button class="news-tab" data-news-tab="rr-news">RR News</button>
+            <button class="news-tab" data-news-tab="newswire">Newswire</button>
+          </div>
+          <div class="news-panel" id="news-panel-news">
+            News
+          </div>
+          <div class="news-panel" id="news-panel-rr-news">
+            <div class="news-table-container">
+              <div class="news-data" id="news-data-rr-news">
+              </div>
+            </div>
+          </div>
+          <div class="news-panel" id="news-panel-newswire">
+            Newswire
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <div class="tab-panel" id="panel-LSE:SXS">
+      LSE:SXS
+    </div>
+
+    <div class="tab-panel" id="panel-LSE:DOCS">
+      LSE:DOCS
+    </div>
+  </div>
+
+  <!-- Link to external JS -->
+  <script src="js/scripts.js"></script>
+</body>
+</html>

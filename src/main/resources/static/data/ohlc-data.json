@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "label": "Time",
+      "value": "16:18:51"
+    },
+    {
+      "label": "Last Chg",
+      "value": "612.18 ↑"
+    },
+    {
+      "label": "Open",
+      "value": "633.60"
+    },
+    {
+      "label": "Year",
+      "value": "624.50"
+    },
+    {
+      "label": "High",
+      "value": "639.20"
+    },
+    {
+      "label": "VWAP",
+      "value": "633.63"
+    },
+    {
+      "label": "Low",
+      "value": "629.00"
+    },
+    {
+      "label": "Trades",
+      "value": "13,308"
+    },
+    {
+      "label": "Trd Hi",
+      "value": "635.40"
+    },
+    {
+      "label": "Spread",
+      "value": "0.20"
+    },
+    {
+      "label": "Trd Lo",
+      "value": "626.80"
+    },
+    {
+      "label": "Sprd %",
+      "value": "0.03%"
+    }
+  ]
+}

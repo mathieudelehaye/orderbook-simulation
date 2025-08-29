@@ -1,0 +1,25 @@
+{
+  "name": "orderbook-frontend",
+  "version": "1.0.0",
+  "description": "Static frontend for orderbook demo",
+  "scripts": {
+    "lint:css": "stylelint \"**/*.{css,html}\"",
+    "lint:css:fix": "stylelint \"**/*.{css,html}\" --fix",
+    "lint:html": "htmlhint \"**/*.html\"",
+    "lint": "npm run lint:css && npm run lint:html"
+  },
+  "keywords": [
+    "orderbook",
+    "fintech",
+    "frontend"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "stylelint": "*",
+    "stylelint-config-standard": "*",
+    "stylelint-config-html": "*",
+    "postcss-html": "*",
+    "htmlhint": "*"
+  }
+}

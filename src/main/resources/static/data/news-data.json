@@ -1,0 +1,104 @@
+{
+  "news": [
+    {
+      "date": "17/02/2025",
+      "time": "11:39:08",
+      "headline": "Rolls-Royce Holdings plc - CEO Patrick Ament: US DEFENCE",
+      "source": "ALNC"
+    },
+    {
+      "date": "10/02/2025",
+      "time": "14:30:00",
+      "headline": "Quarterly earnings report shows strong performance",
+      "source": "LSEG_RNS"
+    },
+    {
+      "date": "28/01/2025",
+      "time": "09:15:22",
+      "headline": "Strategic partnership announced with major supplier",
+      "source": "ALNC"
+    },
+    {
+      "date": "24/01/2025",
+      "time": "08:05:37",
+      "headline": "New contract award for aerospace division",
+      "source": "LSEG_RNS"
+    },
+    {
+      "date": "20/01/2025",
+      "time": "16:42:18",
+      "headline": "Board changes and governance updates announced",
+      "source": "ALNC"
+    }
+  ],
+  "rr-news": [
+    {
+      "date": "17/02/2025",
+      "time": "11:39:08",
+      "headline": "Rolls-Royce Holdings plc - CEO Patrick Ament: US DEFENCE",
+      "source": "ALNC"
+    },
+    {
+      "date": "15/02/2025",
+      "time": "09:22:15",
+      "headline": "RR Holdings announces major defense contract win",
+      "source": "LSEG_RNS"
+    },
+    {
+      "date": "12/02/2025",
+      "time": "14:18:33",
+      "headline": "Rolls-Royce completes acquisition of nuclear technology firm",
+      "source": "ALNC"
+    },
+    {
+      "date": "08/02/2025",
+      "time": "10:45:12",
+      "headline": "RR marine division secures large commercial order",
+      "source": "LSEG_RNS"
+    },
+    {
+      "date": "05/02/2025",
+      "time": "13:27:44",
+      "headline": "Rolls-Royce civil aerospace revenue guidance updated",
+      "source": "ALNC"
+    },
+    {
+      "date": "02/02/2025",
+      "time": "08:11:29",
+      "headline": "RR Holdings board approves dividend increase",
+      "source": "LSEG_RNS"
+    }
+  ],
+  "newswire": [
+    {
+      "date": "17/02/2025",
+      "time": "15:23:42",
+      "headline": "Global aerospace market outlook remains positive",
+      "source": "ALNC"
+    },
+    {
+      "date": "16/02/2025",
+      "time": "12:17:55",
+      "headline": "Defense spending increases across European markets",
+      "source": "LSEG_RNS"
+    },
+    {
+      "date": "14/02/2025",
+      "time": "09:34:18",
+      "headline": "Nuclear power sector sees renewed investor interest",
+      "source": "ALNC"
+    },
+    {
+      "date": "13/02/2025",
+      "time": "16:28:07",
+      "headline": "Marine propulsion technology advances drive growth",
+      "source": "LSEG_RNS"
+    },
+    {
+      "date": "11/02/2025",
+      "time": "11:55:33",
+      "headline": "Supply chain disruptions affect aerospace manufacturing",
+      "source": "ALNC"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "trades": [
+    {
+      "price": 632.20,
+      "shares": 565,
+      "type": "AT",
+      "time": "16:18:51",
+      "color": "blue"
+    },
+    {
+      "price": 632.40,
+      "shares": 3,
+      "type": "O",
+      "time": "16:18:49",
+      "color": "blue"
+    },
+    {
+      "price": 632.20,
+      "shares": 799,
+      "type": "AT",
+      "time": "16:18:49",
+      "color": "red"
+    },
+    {
+      "price": 632.20,
+      "shares": 2790,
+      "type": "",
+      "time": "16:18:49",
+      "color": "red"
+    },
+    {
+      "price": 632.20,
+      "shares": 300,
+      "type": "",
+      "time": "16:18:49",
+      "color": "red"
+    },
+    {
+      "price": 632.20,
+      "shares": 679,
+      "type": "AT",
+      "time": "16:18:49",
+      "color": "blue"
+    },
+    {
+      "price": 632.20,
+      "shares": 313,
+      "type": "AT",
+      "time": "16:18:45",
+      "color": "blue"
+    },
+    {
+      "price": 632.20,
+      "shares": 82,
+      "type": "AT",
+      "time": "16:18:45",
+      "color": "blue"
+    },
+    {
+      "price": 632.20,
+      "shares": 82,
+      "type": "AT",
+      "time": "16:18:45",
+      "color": "blue"
+    },
+    {
+      "price": 632.20,
+      "shares": 264,
+      "type": "AT",
+      "time": "16:18:45",
+      "color": "blue"
+    }
+  ]
+}
