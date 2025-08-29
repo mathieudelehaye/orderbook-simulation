@@ -134,6 +134,11 @@ function updateOrderbook(orderbookData) {
 
     populateOrders('bid-orders', orderbookData.bids, 'bid', midpoint);
     populateOrders('ask-orders', orderbookData.asks, 'ask', midpoint);
+    
+    // Update yellow bar if data is available
+    if (orderbookData.yellowBar) {
+        updateYellowBar(orderbookData.yellowBar);
+    }
 }
 
 function populateOrders(containerId, orders, side, midpoint) {
@@ -463,4 +468,21 @@ function populateNewsData(tabId, newsItems) {
         
         container.appendChild(row);
     });
+}
+
+function updateYellowBar(yellowBarData) {
+    // Update the 7 yellow bar values: bidOrderCount, bidShareCount, bidPrice, separator, askPrice, askShareCount, askOrderCount
+    const yellowBarRow = document.querySelector('.yellow-bar-row');
+    if (yellowBarRow) {
+        const cells = yellowBarRow.querySelectorAll('.yellow-bar-cell');
+        if (cells.length >= 7) {
+            cells[0].textContent = yellowBarData.bidOrderCount.toLocaleString();
+            cells[1].textContent = yellowBarData.bidShareCount.toLocaleString();
+            cells[2].textContent = yellowBarData.bidPrice.toFixed(2);
+            cells[3].textContent = '-';
+            cells[4].textContent = yellowBarData.askPrice.toFixed(2);
+            cells[5].textContent = yellowBarData.askShareCount.toLocaleString();
+            cells[6].textContent = yellowBarData.askOrderCount.toLocaleString();
+        }
+    }
 }
