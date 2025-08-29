@@ -1,104 +1,93 @@
-{
-  "news": [
-    {
-      "date": "17/02/2025",
-      "time": "11:39:08",
-      "headline": "Rolls-Royce Holdings plc - CEO Patrick Ament: US DEFENCE",
-      "source": "ALNC"
-    },
-    {
-      "date": "10/02/2025",
-      "time": "14:30:00",
-      "headline": "Quarterly earnings report shows strong performance",
-      "source": "LSEG_RNS"
-    },
-    {
-      "date": "28/01/2025",
-      "time": "09:15:22",
-      "headline": "Strategic partnership announced with major supplier",
-      "source": "ALNC"
-    },
-    {
-      "date": "24/01/2025",
-      "time": "08:05:37",
-      "headline": "New contract award for aerospace division",
-      "source": "LSEG_RNS"
-    },
-    {
-      "date": "20/01/2025",
-      "time": "16:42:18",
-      "headline": "Board changes and governance updates announced",
-      "source": "ALNC"
-    }
-  ],
-  "rr-news": [
-    {
-      "date": "17/02/2025",
-      "time": "11:39:08",
-      "headline": "Rolls-Royce Holdings plc - CEO Patrick Ament: US DEFENCE",
-      "source": "ALNC"
-    },
-    {
-      "date": "15/02/2025",
-      "time": "09:22:15",
-      "headline": "RR Holdings announces major defense contract win",
-      "source": "LSEG_RNS"
-    },
-    {
-      "date": "12/02/2025",
-      "time": "14:18:33",
-      "headline": "Rolls-Royce completes acquisition of nuclear technology firm",
-      "source": "ALNC"
-    },
-    {
-      "date": "08/02/2025",
-      "time": "10:45:12",
-      "headline": "RR marine division secures large commercial order",
-      "source": "LSEG_RNS"
-    },
-    {
-      "date": "05/02/2025",
-      "time": "13:27:44",
-      "headline": "Rolls-Royce civil aerospace revenue guidance updated",
-      "source": "ALNC"
-    },
-    {
-      "date": "02/02/2025",
-      "time": "08:11:29",
-      "headline": "RR Holdings board approves dividend increase",
-      "source": "LSEG_RNS"
-    }
-  ],
-  "newswire": [
-    {
-      "date": "17/02/2025",
-      "time": "15:23:42",
-      "headline": "Global aerospace market outlook remains positive",
-      "source": "ALNC"
-    },
-    {
-      "date": "16/02/2025",
-      "time": "12:17:55",
-      "headline": "Defense spending increases across European markets",
-      "source": "LSEG_RNS"
-    },
-    {
-      "date": "14/02/2025",
-      "time": "09:34:18",
-      "headline": "Nuclear power sector sees renewed investor interest",
-      "source": "ALNC"
-    },
-    {
-      "date": "13/02/2025",
-      "time": "16:28:07",
-      "headline": "Marine propulsion technology advances drive growth",
-      "source": "LSEG_RNS"
-    },
-    {
-      "date": "11/02/2025",
-      "time": "11:55:33",
-      "headline": "Supply chain disruptions affect aerospace manufacturing",
-      "source": "ALNC"
-    }
-  ]
-}
+[
+  {
+    "timestamp": "16:18:50",
+    "news": [
+      { "date": "29/08/2025", "time": "16:18:50", "headline": "Rolls-Royce Holdings plc - CEO announces US defence contract", "source": "ALNC" },
+      { "date": "29/08/2025", "time": "16:15:30", "headline": "Trading volume increases 15% in afternoon session", "source": "LSEG_RNS" },
+      { "date": "29/08/2025", "time": "16:10:15", "headline": "Institutional investor increases stake to 8.2%", "source": "BLOOMBERG" },
+      { "date": "29/08/2025", "time": "16:05:42", "headline": "Engine maintenance services contract renewed", "source": "AVIATION_WEEK" },
+      { "date": "29/08/2025", "time": "15:58:20", "headline": "Board approves dividend increase of 8%", "source": "COMPANY_NEWS" },
+      { "date": "29/08/2025", "time": "15:45:10", "headline": "Sustainable aviation fuel initiative launched", "source": "ENERGY_REPORTER" },
+      { "date": "29/08/2025", "time": "15:30:05", "headline": "Nuclear power division sees strong growth", "source": "NUCLEAR_NEWS" },
+      { "date": "29/08/2025", "time": "15:15:18", "headline": "Supply chain efficiency improvements announced", "source": "SUPPLY_CHAIN" }
+    ]
+  },
+  {
+    "timestamp": "16:18:52",
+    "news": [
+      { "date": "29/08/2025", "time": "16:18:52", "headline": "Quarterly earnings beat expectations by 12%", "source": "REUTERS" },
+      { "date": "29/08/2025", "time": "16:18:50", "headline": "Rolls-Royce Holdings plc - CEO announces US defence contract", "source": "ALNC" },
+      { "date": "29/08/2025", "time": "16:15:30", "headline": "Trading volume increases 15% in afternoon session", "source": "LSEG_RNS" },
+      { "date": "29/08/2025", "time": "16:10:15", "headline": "Institutional investor increases stake to 8.2%", "source": "BLOOMBERG" },
+      { "date": "29/08/2025", "time": "16:05:42", "headline": "Engine maintenance services contract renewed", "source": "AVIATION_WEEK" },
+      { "date": "29/08/2025", "time": "15:58:20", "headline": "Board approves dividend increase of 8%", "source": "COMPANY_NEWS" },
+      { "date": "29/08/2025", "time": "15:45:10", "headline": "Sustainable aviation fuel initiative launched", "source": "ENERGY_REPORTER" },
+      { "date": "29/08/2025", "time": "15:30:05", "headline": "Nuclear power division sees strong growth", "source": "NUCLEAR_NEWS" }
+    ]
+  },
+  {
+    "timestamp": "16:18:54",
+    "news": [
+      { "date": "29/08/2025", "time": "16:18:54", "headline": "Analyst upgrades rating to BUY with £680 target price", "source": "MORGAN_STANLEY" },
+      { "date": "29/08/2025", "time": "16:18:52", "headline": "Quarterly earnings beat expectations by 12%", "source": "REUTERS" },
+      { "date": "29/08/2025", "time": "16:18:50", "headline": "Rolls-Royce Holdings plc - CEO announces US defence contract", "source": "ALNC" },
+      { "date": "29/08/2025", "time": "16:15:30", "headline": "Trading volume increases 15% in afternoon session", "source": "LSEG_RNS" },
+      { "date": "29/08/2025", "time": "16:10:15", "headline": "Institutional investor increases stake to 8.2%", "source": "BLOOMBERG" },
+      { "date": "29/08/2025", "time": "16:05:42", "headline": "Engine maintenance services contract renewed", "source": "AVIATION_WEEK" },
+      { "date": "29/08/2025", "time": "15:58:20", "headline": "Board approves dividend increase of 8%", "source": "COMPANY_NEWS" },
+      { "date": "29/08/2025", "time": "15:45:10", "headline": "Sustainable aviation fuel initiative launched", "source": "ENERGY_REPORTER" }
+    ]
+  },
+  {
+    "timestamp": "16:18:56",
+    "news": [
+      { "date": "29/08/2025", "time": "16:18:56", "headline": "New engine technology partnership announced with Boeing", "source": "PR_NEWSWIRE" },
+      { "date": "29/08/2025", "time": "16:18:54", "headline": "Analyst upgrades rating to BUY with £680 target price", "source": "MORGAN_STANLEY" },
+      { "date": "29/08/2025", "time": "16:18:52", "headline": "Quarterly earnings beat expectations by 12%", "source": "REUTERS" },
+      { "date": "29/08/2025", "time": "16:18:50", "headline": "Rolls-Royce Holdings plc - CEO announces US defence contract", "source": "ALNC" },
+      { "date": "29/08/2025", "time": "16:15:30", "headline": "Trading volume increases 15% in afternoon session", "source": "LSEG_RNS" },
+      { "date": "29/08/2025", "time": "16:10:15", "headline": "Institutional investor increases stake to 8.2%", "source": "BLOOMBERG" },
+      { "date": "29/08/2025", "time": "16:05:42", "headline": "Engine maintenance services contract renewed", "source": "AVIATION_WEEK" },
+      { "date": "29/08/2025", "time": "15:58:20", "headline": "Board approves dividend increase of 8%", "source": "COMPANY_NEWS" }
+    ]
+  },
+  {
+    "timestamp": "16:18:58",
+    "news": [
+      { "date": "29/08/2025", "time": "16:18:58", "headline": "Share price reaches new 52-week high at 632.80", "source": "MARKET_WATCH" },
+      { "date": "29/08/2025", "time": "16:18:56", "headline": "New engine technology partnership announced with Boeing", "source": "PR_NEWSWIRE" },
+      { "date": "29/08/2025", "time": "16:18:54", "headline": "Analyst upgrades rating to BUY with £680 target price", "source": "MORGAN_STANLEY" },
+      { "date": "29/08/2025", "time": "16:18:52", "headline": "Quarterly earnings beat expectations by 12%", "source": "REUTERS" },
+      { "date": "29/08/2025", "time": "16:18:50", "headline": "Rolls-Royce Holdings plc - CEO announces US defence contract", "source": "ALNC" },
+      { "date": "29/08/2025", "time": "16:15:30", "headline": "Trading volume increases 15% in afternoon session", "source": "LSEG_RNS" },
+      { "date": "29/08/2025", "time": "16:10:15", "headline": "Institutional investor increases stake to 8.2%", "source": "BLOOMBERG" },
+      { "date": "29/08/2025", "time": "16:05:42", "headline": "Engine maintenance services contract renewed", "source": "AVIATION_WEEK" }
+    ]
+  },
+  {
+    "timestamp": "16:19:00",
+    "news": [
+      { "date": "29/08/2025", "time": "16:19:00", "headline": "Options activity spikes with bullish sentiment", "source": "OPTIONS_FLOW" },
+      { "date": "29/08/2025", "time": "16:18:58", "headline": "Share price reaches new 52-week high at 632.80", "source": "MARKET_WATCH" },
+      { "date": "29/08/2025", "time": "16:18:56", "headline": "New engine technology partnership announced with Boeing", "source": "PR_NEWSWIRE" },
+      { "date": "29/08/2025", "time": "16:18:54", "headline": "Analyst upgrades rating to BUY with £680 target price", "source": "MORGAN_STANLEY" },
+      { "date": "29/08/2025", "time": "16:18:52", "headline": "Quarterly earnings beat expectations by 12%", "source": "REUTERS" },
+      { "date": "29/08/2025", "time": "16:18:50", "headline": "Rolls-Royce Holdings plc - CEO announces US defence contract", "source": "ALNC" },
+      { "date": "29/08/2025", "time": "16:15:30", "headline": "Trading volume increases 15% in afternoon session", "source": "LSEG_RNS" },
+      { "date": "29/08/2025", "time": "16:10:15", "headline": "Institutional investor increases stake to 8.2%", "source": "BLOOMBERG" }
+    ]
+  },
+  {
+    "timestamp": "16:19:02",
+    "news": [
+      { "date": "29/08/2025", "time": "16:19:02", "headline": "Fund manager adds 2M shares to portfolio", "source": "SEC_FILING" },
+      { "date": "29/08/2025", "time": "16:19:00", "headline": "Options activity spikes with bullish sentiment", "source": "OPTIONS_FLOW" },
+      { "date": "29/08/2025", "time": "16:18:58", "headline": "Share price reaches new 52-week high at 632.80", "source": "MARKET_WATCH" },
+      { "date": "29/08/2025", "time": "16:18:56", "headline": "New engine technology partnership announced with Boeing", "source": "PR_NEWSWIRE" },
+      { "date": "29/08/2025", "time": "16:18:54", "headline": "Analyst upgrades rating to BUY with £680 target price", "source": "MORGAN_STANLEY" },
+      { "date": "29/08/2025", "time": "16:18:52", "headline": "Quarterly earnings beat expectations by 12%", "source": "REUTERS" },
+      { "date": "29/08/2025", "time": "16:18:50", "headline": "Rolls-Royce Holdings plc - CEO announces US defence contract", "source": "ALNC" },
+      { "date": "29/08/2025", "time": "16:15:30", "headline": "Trading volume increases 15% in afternoon session", "source": "LSEG_RNS" }
+    ]
+  }
+]

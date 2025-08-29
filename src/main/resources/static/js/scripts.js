@@ -140,17 +140,17 @@ function populateOrders(containerId, orders, side) {
         
         if (side === 'bid') {
             orderRow.innerHTML = `
-                <span class="order-cell">${order.price.toFixed(2)}</span>
+                <span class="order-cell">${order.time}</span>
                 <span class="order-cell">${order.exchange}</span>
                 <span class="order-cell">${order.size.toLocaleString()}</span>
-                <span class="order-cell">${order.time}</span>
+                <span class="order-cell">${order.price.toFixed(2)}</span>
             `;
         } else {
             orderRow.innerHTML = `
-                <span class="order-cell">${order.time}</span>
+                <span class="order-cell">${order.price.toFixed(2)}</span>
                 <span class="order-cell">${order.size.toLocaleString()}</span>
                 <span class="order-cell">${order.exchange}</span>
-                <span class="order-cell">${order.price.toFixed(2)}</span>
+                <span class="order-cell">${order.time}</span>
             `;
         }
         

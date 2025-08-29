@@ -1,74 +1,107 @@
-{
-  "trades": [
-    {
-      "price": 632.20,
-      "shares": 565,
-      "type": "AT",
-      "time": "16:18:51",
-      "color": "blue"
-    },
-    {
-      "price": 632.40,
-      "shares": 3,
-      "type": "O",
-      "time": "16:18:49",
-      "color": "blue"
-    },
-    {
-      "price": 632.20,
-      "shares": 799,
-      "type": "AT",
-      "time": "16:18:49",
-      "color": "red"
-    },
-    {
-      "price": 632.20,
-      "shares": 2790,
-      "type": "",
-      "time": "16:18:49",
-      "color": "red"
-    },
-    {
-      "price": 632.20,
-      "shares": 300,
-      "type": "",
-      "time": "16:18:49",
-      "color": "red"
-    },
-    {
-      "price": 632.20,
-      "shares": 679,
-      "type": "AT",
-      "time": "16:18:49",
-      "color": "blue"
-    },
-    {
-      "price": 632.20,
-      "shares": 313,
-      "type": "AT",
-      "time": "16:18:45",
-      "color": "blue"
-    },
-    {
-      "price": 632.20,
-      "shares": 82,
-      "type": "AT",
-      "time": "16:18:45",
-      "color": "blue"
-    },
-    {
-      "price": 632.20,
-      "shares": 82,
-      "type": "AT",
-      "time": "16:18:45",
-      "color": "blue"
-    },
-    {
-      "price": 632.20,
-      "shares": 264,
-      "type": "AT",
-      "time": "16:18:45",
-      "color": "blue"
-    }
-  ]
-}
+[
+  {
+    "timestamp": "16:18:50",
+    "trades": [
+      { "price": 632.20, "shares": 565, "type": "AT", "time": "16:18:50", "color": "blue" },
+      { "price": 632.20, "shares": 3, "type": "O", "time": "16:18:50", "color": "blue" },
+      { "price": 632.20, "shares": 799, "type": "AT", "time": "16:18:50", "color": "red" },
+      { "price": 632.20, "shares": 2700, "type": "AT", "time": "16:18:49", "color": "blue" },
+      { "price": 632.20, "shares": 300, "type": "AT", "time": "16:18:49", "color": "red" },
+      { "price": 632.15, "shares": 820, "type": "AT", "time": "16:18:49", "color": "blue" },
+      { "price": 632.10, "shares": 150, "type": "O", "time": "16:18:48", "color": "red" },
+      { "price": 632.05, "shares": 1100, "type": "AT", "time": "16:18:48", "color": "blue" },
+      { "price": 632.00, "shares": 450, "type": "AT", "time": "16:18:47", "color": "red" },
+      { "price": 631.95, "shares": 680, "type": "AT", "time": "16:18:47", "color": "blue" }
+    ]
+  },
+  {
+    "timestamp": "16:18:52",
+    "trades": [
+      { "price": 632.30, "shares": 450, "type": "AT", "time": "16:18:52", "color": "blue" },
+      { "price": 632.25, "shares": 1200, "type": "AT", "time": "16:18:52", "color": "red" },
+      { "price": 632.20, "shares": 280, "type": "AT", "time": "16:18:51", "color": "blue" },
+      { "price": 632.20, "shares": 150, "type": "O", "time": "16:18:51", "color": "red" },
+      { "price": 632.15, "shares": 900, "type": "AT", "time": "16:18:51", "color": "blue" },
+      { "price": 632.10, "shares": 340, "type": "AT", "time": "16:18:51", "color": "red" },
+      { "price": 632.05, "shares": 750, "type": "AT", "time": "16:18:50", "color": "blue" },
+      { "price": 632.00, "shares": 95, "type": "O", "time": "16:18:50", "color": "red" },
+      { "price": 631.95, "shares": 1300, "type": "AT", "time": "16:18:50", "color": "blue" },
+      { "price": 631.90, "shares": 520, "type": "AT", "time": "16:18:49", "color": "red" }
+    ]
+  },
+  {
+    "timestamp": "16:18:54",
+    "trades": [
+      { "price": 632.40, "shares": 320, "type": "AT", "time": "16:18:54", "color": "blue" },
+      { "price": 632.35, "shares": 750, "type": "AT", "time": "16:18:54", "color": "red" },
+      { "price": 632.30, "shares": 500, "type": "AT", "time": "16:18:53", "color": "blue" },
+      { "price": 632.25, "shares": 85, "type": "O", "time": "16:18:53", "color": "red" },
+      { "price": 632.20, "shares": 1100, "type": "AT", "time": "16:18:53", "color": "blue" },
+      { "price": 632.15, "shares": 420, "type": "AT", "time": "16:18:52", "color": "red" },
+      { "price": 632.10, "shares": 890, "type": "AT", "time": "16:18:52", "color": "blue" },
+      { "price": 632.05, "shares": 180, "type": "O", "time": "16:18:52", "color": "red" },
+      { "price": 632.00, "shares": 1400, "type": "AT", "time": "16:18:51", "color": "blue" },
+      { "price": 631.95, "shares": 650, "type": "AT", "time": "16:18:51", "color": "red" }
+    ]
+  },
+  {
+    "timestamp": "16:18:56",
+    "trades": [
+      { "price": 632.50, "shares": 680, "type": "AT", "time": "16:18:56", "color": "blue" },
+      { "price": 632.45, "shares": 200, "type": "AT", "time": "16:18:56", "color": "red" },
+      { "price": 632.40, "shares": 950, "type": "AT", "time": "16:18:55", "color": "blue" },
+      { "price": 632.35, "shares": 120, "type": "O", "time": "16:18:55", "color": "red" },
+      { "price": 632.30, "shares": 350, "type": "AT", "time": "16:18:55", "color": "blue" },
+      { "price": 632.25, "shares": 780, "type": "AT", "time": "16:18:54", "color": "red" },
+      { "price": 632.20, "shares": 1200, "type": "AT", "time": "16:18:54", "color": "blue" },
+      { "price": 632.15, "shares": 240, "type": "O", "time": "16:18:54", "color": "red" },
+      { "price": 632.10, "shares": 860, "type": "AT", "time": "16:18:53", "color": "blue" },
+      { "price": 632.05, "shares": 480, "type": "AT", "time": "16:18:53", "color": "red" }
+    ]
+  },
+  {
+    "timestamp": "16:18:58",
+    "trades": [
+      { "price": 632.60, "shares": 420, "type": "AT", "time": "16:18:58", "color": "blue" },
+      { "price": 632.55, "shares": 800, "type": "AT", "time": "16:18:58", "color": "red" },
+      { "price": 632.50, "shares": 300, "type": "AT", "time": "16:18:57", "color": "blue" },
+      { "price": 632.45, "shares": 95, "type": "O", "time": "16:18:57", "color": "red" },
+      { "price": 632.40, "shares": 1500, "type": "AT", "time": "16:18:57", "color": "blue" },
+      { "price": 632.35, "shares": 620, "type": "AT", "time": "16:18:56", "color": "red" },
+      { "price": 632.30, "shares": 980, "type": "AT", "time": "16:18:56", "color": "blue" },
+      { "price": 632.25, "shares": 160, "type": "O", "time": "16:18:56", "color": "red" },
+      { "price": 632.20, "shares": 740, "type": "AT", "time": "16:18:55", "color": "blue" },
+      { "price": 632.15, "shares": 350, "type": "AT", "time": "16:18:55", "color": "red" }
+    ]
+  },
+  {
+    "timestamp": "16:19:00",
+    "trades": [
+      { "price": 632.70, "shares": 650, "type": "AT", "time": "16:19:00", "color": "blue" },
+      { "price": 632.65, "shares": 220, "type": "AT", "time": "16:19:00", "color": "red" },
+      { "price": 632.60, "shares": 480, "type": "AT", "time": "16:18:59", "color": "blue" },
+      { "price": 632.55, "shares": 75, "type": "O", "time": "16:18:59", "color": "red" },
+      { "price": 632.50, "shares": 1200, "type": "AT", "time": "16:18:59", "color": "blue" },
+      { "price": 632.45, "shares": 540, "type": "AT", "time": "16:18:58", "color": "red" },
+      { "price": 632.40, "shares": 820, "type": "AT", "time": "16:18:58", "color": "blue" },
+      { "price": 632.35, "shares": 190, "type": "O", "time": "16:18:58", "color": "red" },
+      { "price": 632.30, "shares": 1100, "type": "AT", "time": "16:18:57", "color": "blue" },
+      { "price": 632.25, "shares": 430, "type": "AT", "time": "16:18:57", "color": "red" }
+    ]
+  },
+  {
+    "timestamp": "16:19:02",
+    "trades": [
+      { "price": 632.80, "shares": 380, "type": "AT", "time": "16:19:02", "color": "blue" },
+      { "price": 632.75, "shares": 900, "type": "AT", "time": "16:19:02", "color": "red" },
+      { "price": 632.70, "shares": 550, "type": "AT", "time": "16:19:01", "color": "blue" },
+      { "price": 632.65, "shares": 110, "type": "O", "time": "16:19:01", "color": "red" },
+      { "price": 632.60, "shares": 750, "type": "AT", "time": "16:19:01", "color": "blue" },
+      { "price": 632.55, "shares": 460, "type": "AT", "time": "16:19:00", "color": "red" },
+      { "price": 632.50, "shares": 920, "type": "AT", "time": "16:19:00", "color": "blue" },
+      { "price": 632.45, "shares": 210, "type": "O", "time": "16:19:00", "color": "red" },
+      { "price": 632.40, "shares": 1300, "type": "AT", "time": "16:18:59", "color": "blue" },
+      { "price": 632.35, "shares": 580, "type": "AT", "time": "16:18:59", "color": "red" }
+    ]
+  }
+]

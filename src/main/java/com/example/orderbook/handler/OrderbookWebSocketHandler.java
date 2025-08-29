@@ -48,6 +48,9 @@ public class OrderbookWebSocketHandler extends TextWebSocketHandler {
                 broadcastData("ohlc", dataService.getOhlcData());
                 broadcastData("timeseries", dataService.getTimeseriesData());
                 broadcastData("news", dataService.getNewsData());
+                
+                // Advance to next data set for next broadcast
+                dataService.advanceDataIndex();
             } catch (Exception e) {
                 e.printStackTrace();
             }

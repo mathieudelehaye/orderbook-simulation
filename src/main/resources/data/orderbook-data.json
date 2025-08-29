@@ -1,270 +1,257 @@
-{
-  "bids": [
-    {
-      "price": 632.20,
-      "size": 298,
-      "exchange": "AOX",
-      "time": "16:18:50"
-    },
-    {
-      "price": 632.20,
-      "size": 300,
-      "exchange": "BATS",
-      "time": "16:18:50"
-    },
-    {
-      "price": 632.20,
-      "size": 836,
-      "exchange": "LSE",
-      "time": "16:18:50"
-    },
-    {
-      "price": 632.20,
-      "size": 2000,
-      "exchange": "AOX",
-      "time": "16:18:51"
-    },
-    {
-      "price": 632.20,
-      "size": 1311,
-      "exchange": "CHIX",
-      "time": "16:18:51"
-    },
-    {
-      "price": 632.20,
-      "size": 500,
-      "exchange": "LSE",
-      "time": "16:18:52"
-    },
-    {
-      "price": 632.00,
-      "size": 967,
-      "exchange": "AOX",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 300,
-      "exchange": "AOX",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 332,
-      "exchange": "AOX",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 312,
-      "exchange": "AOX",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 59,
-      "exchange": "BATS",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 1371,
-      "exchange": "CHIX",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 1000,
-      "exchange": "LSE",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 896,
-      "exchange": "LSE",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 192,
-      "exchange": "LSE",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 293,
-      "exchange": "LSE",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.00,
-      "size": 950,
-      "exchange": "LSE",
-      "time": "16:18:46"
-    },
-    {
-      "price": 632.00,
-      "size": 302,
-      "exchange": "LSE",
-      "time": "16:18:46"
-    },
-    {
-      "price": 632.00,
-      "size": 793,
-      "exchange": "LSE",
-      "time": "16:18:51"
-    },
-    {
-      "price": 632.00,
-      "size": 2000,
-      "exchange": "AOX",
-      "time": "16:18:51"
-    },
-    {
-      "price": 632.00,
-      "size": 2804,
-      "exchange": "AOX",
-      "time": "16:24:54"
-    },
-    {
-      "price": 632.00,
-      "size": 52,
-      "exchange": "AOX",
-      "time": "16:24:55"
-    }
-  ],
-  "asks": [
-    {
-      "price": 632.40,
-      "size": 1677,
-      "exchange": "LSE",
-      "time": "15:25:17"
-    },
-    {
-      "price": 632.40,
-      "size": 168,
-      "exchange": "CHIX",
-      "time": "16:15:44"
-    },
-    {
-      "price": 632.40,
-      "size": 323,
-      "exchange": "LSE",
-      "time": "16:15:47"
-    },
-    {
-      "price": 632.40,
-      "size": 296,
-      "exchange": "AOX",
-      "time": "16:15:47"
-    },
-    {
-      "price": 632.40,
-      "size": 143,
-      "exchange": "CHIX",
-      "time": "16:15:50"
-    },
-    {
-      "price": 632.40,
-      "size": 790,
-      "exchange": "LSE",
-      "time": "16:15:57"
-    },
-    {
-      "price": 632.40,
-      "size": 339,
-      "exchange": "AOX",
-      "time": "16:18:01"
-    },
-    {
-      "price": 632.40,
-      "size": 195,
-      "exchange": "CHIX",
-      "time": "16:18:06"
-    },
-    {
-      "price": 632.40,
-      "size": 767,
-      "exchange": "CHIX",
-      "time": "16:18:09"
-    },
-    {
-      "price": 632.40,
-      "size": 785,
-      "exchange": "LSE",
-      "time": "16:18:09"
-    },
-    {
-      "price": 632.40,
-      "size": 290,
-      "exchange": "AOX",
-      "time": "16:18:01"
-    },
-    {
-      "price": 632.40,
-      "size": 872,
-      "exchange": "BATS",
-      "time": "16:18:13"
-    },
-    {
-      "price": 632.40,
-      "size": 69,
-      "exchange": "AOX",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.40,
-      "size": 218,
-      "exchange": "CHIX",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.40,
-      "size": 67,
-      "exchange": "LSE",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.40,
-      "size": 17,
-      "exchange": "LSE",
-      "time": "16:18:45"
-    },
-    {
-      "price": 632.40,
-      "size": 2000,
-      "exchange": "AOX",
-      "time": "16:18:46"
-    },
-    {
-      "price": 632.40,
-      "size": 563,
-      "exchange": "LSE",
-      "time": "16:18:46"
-    },
-    {
-      "price": 632.40,
-      "size": 1005,
-      "exchange": "AOX",
-      "time": "16:18:51"
-    },
-    {
-      "price": 632.40,
-      "size": 799,
-      "exchange": "LSE",
-      "time": "16:18:51"
-    },
-    {
-      "price": 632.60,
-      "size": 629,
-      "exchange": "AOX",
-      "time": "16:24:54"
-    },
-    {
-      "price": 632.60,
-      "size": 1361,
-      "exchange": "LSE",
-      "time": "16:24:55"
-    }
-  ]
-}
+[
+  {
+    "timestamp": "16:18:50",
+    "bids": [
+      { "price": 632.20, "size": 298, "exchange": "AOX", "time": "16:18:50" },
+      { "price": 632.20, "size": 300, "exchange": "BATS", "time": "16:18:50" },
+      { "price": 632.20, "size": 836, "exchange": "LSE", "time": "16:18:50" },
+      { "price": 632.20, "size": 2000, "exchange": "AOX", "time": "16:18:51" },
+      { "price": 632.20, "size": 1311, "exchange": "CHIX", "time": "16:18:51" },
+      { "price": 632.20, "size": 500, "exchange": "LSE", "time": "16:18:52" },
+      { "price": 632.00, "size": 967, "exchange": "AOX", "time": "16:18:45" },
+      { "price": 632.00, "size": 300, "exchange": "AOX", "time": "16:18:45" },
+      { "price": 632.00, "size": 332, "exchange": "AOX", "time": "16:18:45" },
+      { "price": 632.00, "size": 312, "exchange": "AOX", "time": "16:18:45" },
+      { "price": 632.00, "size": 59, "exchange": "BATS", "time": "16:18:45" },
+      { "price": 632.00, "size": 1371, "exchange": "CHIX", "time": "16:18:45" },
+      { "price": 632.00, "size": 1000, "exchange": "LSE", "time": "16:18:45" },
+      { "price": 632.00, "size": 896, "exchange": "LSE", "time": "16:18:45" },
+      { "price": 632.00, "size": 192, "exchange": "LSE", "time": "16:18:45" },
+      { "price": 632.00, "size": 293, "exchange": "LSE", "time": "16:18:45" },
+      { "price": 632.00, "size": 950, "exchange": "LSE", "time": "16:18:46" },
+      { "price": 632.00, "size": 302, "exchange": "LSE", "time": "16:18:46" },
+      { "price": 632.00, "size": 793, "exchange": "LSE", "time": "16:18:51" },
+      { "price": 632.00, "size": 2000, "exchange": "AOX", "time": "16:18:51" },
+      { "price": 631.80, "size": 2804, "exchange": "AOX", "time": "16:18:54" },
+      { "price": 631.80, "size": 52, "exchange": "AOX", "time": "16:18:55" }
+    ],
+    "asks": [
+      { "price": 632.40, "size": 1677, "exchange": "LSE", "time": "15:25:17" },
+      { "price": 632.40, "size": 168, "exchange": "CHIX", "time": "16:15:44" },
+      { "price": 632.40, "size": 323, "exchange": "LSE", "time": "16:15:47" },
+      { "price": 632.40, "size": 296, "exchange": "AOX", "time": "16:15:47" },
+      { "price": 632.40, "size": 143, "exchange": "CHIX", "time": "16:15:50" },
+      { "price": 632.40, "size": 790, "exchange": "LSE", "time": "16:15:57" },
+      { "price": 632.40, "size": 339, "exchange": "AOX", "time": "16:18:01" },
+      { "price": 632.40, "size": 195, "exchange": "CHIX", "time": "16:18:06" },
+      { "price": 632.40, "size": 767, "exchange": "CHIX", "time": "16:18:09" },
+      { "price": 632.40, "size": 785, "exchange": "LSE", "time": "16:18:09" },
+      { "price": 632.40, "size": 290, "exchange": "AOX", "time": "16:18:01" },
+      { "price": 632.40, "size": 872, "exchange": "BATS", "time": "16:18:13" },
+      { "price": 632.40, "size": 69, "exchange": "AOX", "time": "16:18:45" },
+      { "price": 632.40, "size": 218, "exchange": "CHIX", "time": "16:18:45" },
+      { "price": 632.40, "size": 67, "exchange": "LSE", "time": "16:18:45" },
+      { "price": 632.40, "size": 17, "exchange": "LSE", "time": "16:18:45" },
+      { "price": 632.40, "size": 2000, "exchange": "AOX", "time": "16:18:46" },
+      { "price": 632.40, "size": 563, "exchange": "LSE", "time": "16:18:46" },
+      { "price": 632.40, "size": 1005, "exchange": "AOX", "time": "16:18:51" },
+      { "price": 632.40, "size": 799, "exchange": "LSE", "time": "16:18:51" },
+      { "price": 632.60, "size": 629, "exchange": "AOX", "time": "16:18:54" },
+      { "price": 632.60, "size": 1361, "exchange": "LSE", "time": "16:18:55" }
+    ]
+  },
+  {
+    "timestamp": "16:18:52",
+    "bids": [
+      { "price": 632.20, "size": 450, "exchange": "AOX", "time": "16:18:52" },
+      { "price": 632.20, "size": 280, "exchange": "BATS", "time": "16:18:52" },
+      { "price": 632.20, "size": 900, "exchange": "LSE", "time": "16:18:52" },
+      { "price": 632.20, "size": 1800, "exchange": "CHIX", "time": "16:18:52" },
+      { "price": 632.20, "size": 650, "exchange": "AOX", "time": "16:18:51" },
+      { "price": 632.00, "size": 1200, "exchange": "AOX", "time": "16:18:51" },
+      { "price": 632.00, "size": 250, "exchange": "CHIX", "time": "16:18:51" },
+      { "price": 632.00, "size": 780, "exchange": "BATS", "time": "16:18:50" },
+      { "price": 632.00, "size": 420, "exchange": "LSE", "time": "16:18:50" },
+      { "price": 632.00, "size": 310, "exchange": "AOX", "time": "16:18:49" },
+      { "price": 632.00, "size": 890, "exchange": "CHIX", "time": "16:18:49" },
+      { "price": 632.00, "size": 560, "exchange": "BATS", "time": "16:18:49" },
+      { "price": 631.80, "size": 800, "exchange": "LSE", "time": "16:18:50" },
+      { "price": 631.80, "size": 650, "exchange": "BATS", "time": "16:18:50" },
+      { "price": 631.80, "size": 920, "exchange": "AOX", "time": "16:18:49" },
+      { "price": 631.80, "size": 340, "exchange": "CHIX", "time": "16:18:49" },
+      { "price": 631.80, "size": 150, "exchange": "LSE", "time": "16:18:48" },
+      { "price": 631.80, "size": 680, "exchange": "BATS", "time": "16:18:48" },
+      { "price": 631.60, "size": 1500, "exchange": "AOX", "time": "16:18:48" },
+      { "price": 631.60, "size": 720, "exchange": "CHIX", "time": "16:18:47" },
+      { "price": 631.60, "size": 480, "exchange": "LSE", "time": "16:18:47" },
+      { "price": 631.60, "size": 1100, "exchange": "BATS", "time": "16:18:46" }
+    ],
+    "asks": [
+      { "price": 632.40, "size": 1500, "exchange": "LSE", "time": "16:18:52" },
+      { "price": 632.40, "size": 200, "exchange": "CHIX", "time": "16:18:52" },
+      { "price": 632.40, "size": 400, "exchange": "BATS", "time": "16:18:52" },
+      { "price": 632.40, "size": 820, "exchange": "AOX", "time": "16:18:51" },
+      { "price": 632.40, "size": 350, "exchange": "LSE", "time": "16:18:51" },
+      { "price": 632.60, "size": 350, "exchange": "AOX", "time": "16:18:51" },
+      { "price": 632.60, "size": 850, "exchange": "LSE", "time": "16:18:51" },
+      { "price": 632.60, "size": 290, "exchange": "CHIX", "time": "16:18:50" },
+      { "price": 632.60, "size": 640, "exchange": "BATS", "time": "16:18:50" },
+      { "price": 632.60, "size": 180, "exchange": "AOX", "time": "16:18:49" },
+      { "price": 632.80, "size": 280, "exchange": "AOX", "time": "16:18:50" },
+      { "price": 632.80, "size": 180, "exchange": "CHIX", "time": "16:18:50" },
+      { "price": 632.80, "size": 520, "exchange": "LSE", "time": "16:18:49" },
+      { "price": 632.80, "size": 370, "exchange": "BATS", "time": "16:18:49" },
+      { "price": 632.80, "size": 450, "exchange": "AOX", "time": "16:18:48" },
+      { "price": 633.00, "size": 900, "exchange": "LSE", "time": "16:18:48" },
+      { "price": 633.00, "size": 320, "exchange": "CHIX", "time": "16:18:47" },
+      { "price": 633.00, "size": 580, "exchange": "BATS", "time": "16:18:47" },
+      { "price": 633.20, "size": 740, "exchange": "AOX", "time": "16:18:46" },
+      { "price": 633.20, "size": 260, "exchange": "LSE", "time": "16:18:46" },
+      { "price": 633.40, "size": 1200, "exchange": "CHIX", "time": "16:18:45" },
+      { "price": 633.40, "size": 680, "exchange": "BATS", "time": "16:18:44" }
+    ]
+  },
+  {
+    "timestamp": "16:18:54",
+    "bids": [
+      { "price": 632.40, "size": 300, "exchange": "LSE", "time": "16:18:54" },
+      { "price": 632.40, "size": 180, "exchange": "CHIX", "time": "16:18:54" },
+      { "price": 632.20, "size": 380, "exchange": "AOX", "time": "16:18:54" },
+      { "price": 632.20, "size": 320, "exchange": "BATS", "time": "16:18:54" },
+      { "price": 632.20, "size": 750, "exchange": "CHIX", "time": "16:18:54" },
+      { "price": 632.20, "size": 540, "exchange": "LSE", "time": "16:18:53" },
+      { "price": 632.20, "size": 890, "exchange": "AOX", "time": "16:18:53" },
+      { "price": 632.00, "size": 1100, "exchange": "AOX", "time": "16:18:53" },
+      { "price": 632.00, "size": 400, "exchange": "LSE", "time": "16:18:53" },
+      { "price": 632.00, "size": 720, "exchange": "BATS", "time": "16:18:52" },
+      { "price": 632.00, "size": 280, "exchange": "CHIX", "time": "16:18:52" },
+      { "price": 632.00, "size": 950, "exchange": "AOX", "time": "16:18:52" },
+      { "price": 632.00, "size": 340, "exchange": "LSE", "time": "16:18:51" },
+      { "price": 631.80, "size": 600, "exchange": "BATS", "time": "16:18:52" },
+      { "price": 631.80, "size": 550, "exchange": "CHIX", "time": "16:18:52" },
+      { "price": 631.80, "size": 820, "exchange": "AOX", "time": "16:18:51" },
+      { "price": 631.80, "size": 390, "exchange": "LSE", "time": "16:18:51" },
+      { "price": 631.60, "size": 1200, "exchange": "AOX", "time": "16:18:50" },
+      { "price": 631.60, "size": 480, "exchange": "BATS", "time": "16:18:50" },
+      { "price": 631.60, "size": 670, "exchange": "CHIX", "time": "16:18:49" },
+      { "price": 631.40, "size": 1500, "exchange": "LSE", "time": "16:18:49" },
+      { "price": 631.40, "size": 290, "exchange": "AOX", "time": "16:18:48" }
+    ],
+    "asks": [
+      { "price": 632.60, "size": 1200, "exchange": "LSE", "time": "16:18:54" },
+      { "price": 632.60, "size": 250, "exchange": "AOX", "time": "16:18:54" },
+      { "price": 632.60, "size": 450, "exchange": "BATS", "time": "16:18:54" },
+      { "price": 632.60, "size": 780, "exchange": "CHIX", "time": "16:18:53" },
+      { "price": 632.60, "size": 320, "exchange": "LSE", "time": "16:18:53" },
+      { "price": 632.80, "size": 380, "exchange": "CHIX", "time": "16:18:53" },
+      { "price": 632.80, "size": 720, "exchange": "LSE", "time": "16:18:53" },
+      { "price": 632.80, "size": 450, "exchange": "AOX", "time": "16:18:52" },
+      { "price": 632.80, "size": 590, "exchange": "BATS", "time": "16:18:52" },
+      { "price": 633.00, "size": 300, "exchange": "AOX", "time": "16:18:52" },
+      { "price": 633.00, "size": 200, "exchange": "BATS", "time": "16:18:52" },
+      { "price": 633.00, "size": 680, "exchange": "LSE", "time": "16:18:51" },
+      { "price": 633.00, "size": 340, "exchange": "CHIX", "time": "16:18:51" },
+      { "price": 633.20, "size": 800, "exchange": "LSE", "time": "16:18:50" },
+      { "price": 633.20, "size": 420, "exchange": "AOX", "time": "16:18:50" },
+      { "price": 633.20, "size": 260, "exchange": "BATS", "time": "16:18:49" },
+      { "price": 633.40, "size": 950, "exchange": "CHIX", "time": "16:18:49" },
+      { "price": 633.40, "size": 180, "exchange": "LSE", "time": "16:18:48" },
+      { "price": 633.60, "size": 1100, "exchange": "AOX", "time": "16:18:48" },
+      { "price": 633.60, "size": 370, "exchange": "BATS", "time": "16:18:47" },
+      { "price": 633.80, "size": 850, "exchange": "CHIX", "time": "16:18:47" },
+      { "price": 633.80, "size": 640, "exchange": "LSE", "time": "16:18:46" }
+    ]
+  },
+  {
+    "timestamp": "16:18:56",
+    "bids": [
+      { "price": 632.40, "size": 450, "exchange": "LSE", "time": "16:18:56" },
+      { "price": 632.40, "size": 200, "exchange": "AOX", "time": "16:18:56" },
+      { "price": 632.40, "size": 680, "exchange": "BATS", "time": "16:18:55" },
+      { "price": 632.40, "size": 320, "exchange": "CHIX", "time": "16:18:55" },
+      { "price": 632.20, "size": 500, "exchange": "BATS", "time": "16:18:56" },
+      { "price": 632.20, "size": 800, "exchange": "CHIX", "time": "16:18:56" },
+      { "price": 632.20, "size": 1200, "exchange": "LSE", "time": "16:18:55" },
+      { "price": 632.20, "size": 350, "exchange": "AOX", "time": "16:18:55" },
+      { "price": 632.00, "size": 950, "exchange": "AOX", "time": "16:18:55" },
+      { "price": 632.00, "size": 350, "exchange": "LSE", "time": "16:18:55" },
+      { "price": 632.00, "size": 780, "exchange": "BATS", "time": "16:18:54" },
+      { "price": 632.00, "size": 540, "exchange": "CHIX", "time": "16:18:54" },
+      { "price": 631.80, "size": 700, "exchange": "BATS", "time": "16:18:54" },
+      { "price": 631.80, "size": 820, "exchange": "LSE", "time": "16:18:53" },
+      { "price": 631.80, "size": 480, "exchange": "AOX", "time": "16:18:53" },
+      { "price": 631.80, "size": 390, "exchange": "CHIX", "time": "16:18:53" },
+      { "price": 631.60, "size": 1200, "exchange": "AOX", "time": "16:18:53" },
+      { "price": 631.60, "size": 650, "exchange": "BATS", "time": "16:18:52" },
+      { "price": 631.60, "size": 290, "exchange": "LSE", "time": "16:18:52" },
+      { "price": 631.40, "size": 1500, "exchange": "CHIX", "time": "16:18:51" },
+      { "price": 631.40, "size": 740, "exchange": "AOX", "time": "16:18:51" },
+      { "price": 631.20, "size": 880, "exchange": "BATS", "time": "16:18:50" }
+    ],
+    "asks": [
+      { "price": 632.60, "size": 1000, "exchange": "LSE", "time": "16:18:56" },
+      { "price": 632.60, "size": 300, "exchange": "AOX", "time": "16:18:56" },
+      { "price": 632.60, "size": 680, "exchange": "BATS", "time": "16:18:55" },
+      { "price": 632.60, "size": 420, "exchange": "CHIX", "time": "16:18:55" },
+      { "price": 632.80, "size": 500, "exchange": "BATS", "time": "16:18:56" },
+      { "price": 632.80, "size": 420, "exchange": "CHIX", "time": "16:18:55" },
+      { "price": 632.80, "size": 750, "exchange": "LSE", "time": "16:18:55" },
+      { "price": 632.80, "size": 290, "exchange": "AOX", "time": "16:18:54" },
+      { "price": 633.00, "size": 650, "exchange": "LSE", "time": "16:18:55" },
+      { "price": 633.00, "size": 280, "exchange": "AOX", "time": "16:18:54" },
+      { "price": 633.00, "size": 540, "exchange": "BATS", "time": "16:18:54" },
+      { "price": 633.00, "size": 390, "exchange": "CHIX", "time": "16:18:53" },
+      { "price": 633.20, "size": 180, "exchange": "BATS", "time": "16:18:54" },
+      { "price": 633.20, "size": 900, "exchange": "LSE", "time": "16:18:52" },
+      { "price": 633.20, "size": 470, "exchange": "AOX", "time": "16:18:52" },
+      { "price": 633.40, "size": 820, "exchange": "CHIX", "time": "16:18:52" },
+      { "price": 633.40, "size": 360, "exchange": "BATS", "time": "16:18:51" },
+      { "price": 633.60, "size": 1100, "exchange": "LSE", "time": "16:18:51" },
+      { "price": 633.60, "size": 280, "exchange": "AOX", "time": "16:18:50" },
+      { "price": 633.80, "size": 950, "exchange": "CHIX", "time": "16:18:50" },
+      { "price": 634.00, "size": 640, "exchange": "BATS", "time": "16:18:49" },
+      { "price": 634.00, "size": 580, "exchange": "LSE", "time": "16:18:48" }
+    ]
+  },
+  {
+    "timestamp": "16:18:58",
+    "bids": [
+      { "price": 632.60, "size": 250, "exchange": "AOX", "time": "16:18:58" },
+      { "price": 632.60, "size": 420, "exchange": "BATS", "time": "16:18:58" },
+      { "price": 632.40, "size": 380, "exchange": "LSE", "time": "16:18:58" },
+      { "price": 632.40, "size": 150, "exchange": "BATS", "time": "16:18:58" },
+      { "price": 632.40, "size": 780, "exchange": "CHIX", "time": "16:18:57" },
+      { "price": 632.40, "size": 920, "exchange": "AOX", "time": "16:18:57" },
+      { "price": 632.20, "size": 600, "exchange": "CHIX", "time": "16:18:58" },
+      { "price": 632.20, "size": 750, "exchange": "LSE", "time": "16:18:57" },
+      { "price": 632.20, "size": 480, "exchange": "BATS", "time": "16:18:57" },
+      { "price": 632.20, "size": 340, "exchange": "AOX", "time": "16:18:56" },
+      { "price": 632.00, "size": 800, "exchange": "AOX", "time": "16:18:57" },
+      { "price": 632.00, "size": 560, "exchange": "LSE", "time": "16:18:56" },
+      { "price": 632.00, "size": 290, "exchange": "CHIX", "time": "16:18:56" },
+      { "price": 631.80, "size": 450, "exchange": "BATS", "time": "16:18:56" },
+      { "price": 631.80, "size": 650, "exchange": "CHIX", "time": "16:18:56" },
+      { "price": 631.80, "size": 720, "exchange": "AOX", "time": "16:18:55" },
+      { "price": 631.80, "size": 380, "exchange": "LSE", "time": "16:18:55" },
+      { "price": 631.60, "size": 1200, "exchange": "BATS", "time": "16:18:55" },
+      { "price": 631.60, "size": 540, "exchange": "CHIX", "time": "16:18:54" },
+      { "price": 631.40, "size": 950, "exchange": "AOX", "time": "16:18:54" },
+      { "price": 631.40, "size": 680, "exchange": "LSE", "time": "16:18:53" },
+      { "price": 631.20, "size": 1100, "exchange": "BATS", "time": "16:18:53" }
+    ],
+    "asks": [
+      { "price": 632.80, "size": 900, "exchange": "LSE", "time": "16:18:58" },
+      { "price": 632.80, "size": 350, "exchange": "AOX", "time": "16:18:58" },
+      { "price": 632.80, "size": 620, "exchange": "BATS", "time": "16:18:57" },
+      { "price": 632.80, "size": 280, "exchange": "CHIX", "time": "16:18:57" },
+      { "price": 633.00, "size": 550, "exchange": "BATS", "time": "16:18:58" },
+      { "price": 633.00, "size": 480, "exchange": "CHIX", "time": "16:18:57" },
+      { "price": 633.00, "size": 720, "exchange": "LSE", "time": "16:18:57" },
+      { "price": 633.00, "size": 390, "exchange": "AOX", "time": "16:18:56" },
+      { "price": 633.20, "size": 700, "exchange": "LSE", "time": "16:18:57" },
+      { "price": 633.20, "size": 320, "exchange": "AOX", "time": "16:18:56" },
+      { "price": 633.20, "size": 460, "exchange": "BATS", "time": "16:18:56" },
+      { "price": 633.20, "size": 580, "exchange": "CHIX", "time": "16:18:55" },
+      { "price": 633.40, "size": 200, "exchange": "BATS", "time": "16:18:56" },
+      { "price": 633.40, "size": 850, "exchange": "LSE", "time": "16:18:54" },
+      { "price": 633.40, "size": 340, "exchange": "AOX", "time": "16:18:54" },
+      { "price": 633.60, "size": 920, "exchange": "CHIX", "time": "16:18:54" },
+      { "price": 633.60, "size": 480, "exchange": "BATS", "time": "16:18:53" },
+      { "price": 633.80, "size": 760, "exchange": "LSE", "time": "16:18:53" },
+      { "price": 633.80, "size": 280, "exchange": "AOX", "time": "16:18:52" },
+      { "price": 634.00, "size": 1200, "exchange": "CHIX", "time": "16:18:52" },
+      { "price": 634.20, "size": 540, "exchange": "BATS", "time": "16:18:51" },
+      { "price": 634.20, "size": 890, "exchange": "LSE", "time": "16:18:50" }
+    ]
+  }
+]
