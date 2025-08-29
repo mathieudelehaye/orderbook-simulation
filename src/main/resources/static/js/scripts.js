@@ -124,19 +124,26 @@ function handleWebSocketMessage(data) {
 }
 
 function updateOrderbook(orderbookData) {
-    populateOrders('bid-orders', orderbookData.bids, 'bid');
-    populateOrders('ask-orders', orderbookData.asks, 'ask');
+    const bestBid = (orderbookData.bids || []).reduce((max, o) => Math.max(max, o.price), -Infinity);
+    const bestAsk = (orderbookData.asks || []).reduce((min, o) => Math.min(min, o.price), Infinity);
+
+    // Fallback if one side is missing
+    const midpoint = (isFinite(bestBid) && isFinite(bestAsk))
+        ? (bestBid + bestAsk) / 2
+        : 632.30;
+
+    populateOrders('bid-orders', orderbookData.bids, 'bid', midpoint);
+    populateOrders('ask-orders', orderbookData.asks, 'ask', midpoint);
 }
 
-function populateOrders(containerId, orders, side) {
+function populateOrders(containerId, orders, side, midpoint) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
     
     orders.forEach(order => {
         const orderRow = document.createElement('div');
 
-        // midpoint currenty hardcoded
-        orderRow.className = `order-row ${getOrderColor(order.price, 632.30)}`;
+        orderRow.className = `order-row ${getOrderColor(order.price, midpoint)}`;
         
         if (side === 'bid') {
             orderRow.innerHTML = `
