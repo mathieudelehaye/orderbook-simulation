@@ -1,0 +1,26 @@
+# Docker ignore file to optimize build context
+target/
+.git/
+.gitignore
+README.md
+.claude/
+*.md
+
+# Node modules in static resources (if any)
+src/main/resources/static/node_modules/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+logs/
