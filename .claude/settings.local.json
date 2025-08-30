@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Read(C:\\Users\\mathi\\source\\repos\\wb\\StaticWebPages\\L2-orderbook/**)"
-    ],
-    "deny": [],
-    "ask": []
-  }
-}
