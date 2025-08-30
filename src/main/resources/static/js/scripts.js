@@ -128,7 +128,12 @@ document.getElementById("live-toggle").addEventListener("change", (e) => {
 });
 
 function initializeWebSocket() {
-    websocket = new WebSocket('ws://localhost:8080/websocket');
+    // Dynamically determine WebSocket URL based on current location
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const host = window.location.host;
+    const wsUrl = `${protocol}//${host}/websocket`;
+    
+    websocket = new WebSocket(wsUrl);
     
     websocket.onopen = function(event) {
         console.log('WebSocket connection established');
