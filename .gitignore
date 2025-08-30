@@ -1,7 +1,6 @@
 HELP.md
 .gradle
 build/
-!gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 
@@ -18,6 +17,7 @@ bin/
 !**/src/test/**/bin/
 
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 *.code-workspace
 
 node_modules/
