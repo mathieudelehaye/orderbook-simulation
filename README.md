@@ -1,16 +1,12 @@
----
-title: Orderbook Simulation
-emoji: 📈
-colorFrom: blue
-colorTo: green
-sdk: docker
-pinned: false
-app_port: 8080
----
+# Mathieu Delehaye - Orderbook Simulation
 
-# Orderbook Simulation
+A real-time orderbook visualization application built with Java Spring Boot and WebSocket.
 
-🚀 **Live Demo**: [https://orderbook-simulation.onrender.com/](https://orderbook-simulation.onrender.com/)
+## 🌐 Live Application
+
+**🚀 [View Live Orderbook](https://orderbook-simulation.onrender.com/)**
+
+> **⏳ Note:** It may take up to 10 seconds to launch if the app is inactive.
 
 ## Screenshots
 
@@ -18,16 +14,9 @@ app_port: 8080
 ![Desktop Web View](screenshots/screenshot01.png)
 
 ### Responsive Views
-<div style="display: flex; gap: 20px;">
-  <img src="screenshots/screenshot02.png" alt="Top Responsive View" width="35%" />
-  <img src="screenshots/screenshot03.png" alt="Bottom Responsive View" width="35%" />
-</div>
 
-![Orderbook Interface](https://github.com/mathieudelehaye/orderbook-simulation/raw/main/screenshots/orderbook-main.png)
-![Price Chart View](https://github.com/mathieudelehaye/orderbook-simulation/raw/main/screenshots/price-chart.png)
-![OHLC Data Panel](https://github.com/mathieudelehaye/orderbook-simulation/raw/main/screenshots/ohlc-panel.png)
-
-A real-time orderbook visualization application built with Java Spring Boot and WebSocket.
+<img src="screenshots/screenshot02.png" alt="Top Responsive View" width="70%" />
+<img src="screenshots/screenshot03.png" alt="Bottom Responsive View" width="70%" />
 
 ## Features
 
