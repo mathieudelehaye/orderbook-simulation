@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalDouble;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -19,6 +20,10 @@ public class DataService {
     private List<Map<String, Object>> orderbookDataList;
     private List<Map<String, Object>> tradesDataList;
     private List<Map<String, Object>> newsDataList;
+    
+    // Store previous top prices for change calculation
+    private Double previousBidTopPrice = null;
+    private Double previousAskTopPrice = null;
 
     public DataService() {
         try {
@@ -36,7 +41,7 @@ public class DataService {
 
     public Map<String, Object> getOrderbookData() throws IOException {
         if (orderbookDataList == null || orderbookDataList.isEmpty()) {
-            return Map.of("bids", List.of(), "asks", List.of(), "yellowBar", getEmptyYellowBar());
+            return Map.of("bids", List.of(), "asks", List.of(), "yellowBar", getEmptyYellowBar(), "headerInfo", getEmptyHeaderInfo());
         }
         int index = dataIndex.get() % orderbookDataList.size();
         Map<String, Object> orderbook = orderbookDataList.get(index);
@@ -44,9 +49,13 @@ public class DataService {
         // Calculate yellow bar data
         Map<String, Object> yellowBar = calculateYellowBarData(orderbook);
         
-        // Add yellow bar to the response
+        // Calculate header info data
+        Map<String, Object> headerInfo = calculateHeaderInfo(orderbook);
+        
+        // Add yellow bar and header info to the response
         Map<String, Object> response = new java.util.HashMap<>(orderbook);
         response.put("yellowBar", yellowBar);
+        response.put("headerInfo", headerInfo);
         
         return response;
     }
@@ -152,6 +161,95 @@ public class DataService {
                 "askPrice", 0.0,
                 "askShareCount", 0,
                 "askOrderCount", 0
+        );
+    }
+    
+    private Map<String, Object> calculateHeaderInfo(Map<String, Object> orderbook) {
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> bids = (List<Map<String, Object>>) orderbook.get("bids");
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> asks = (List<Map<String, Object>>) orderbook.get("asks");
+        
+        // Calculate buy side data (best bid price is highest)
+        Map<String, Object> buyData = calculateSideData(bids, true, previousBidTopPrice);
+        
+        // Calculate sell side data (best ask price is lowest)  
+        Map<String, Object> sellData = calculateSideData(asks, false, previousAskTopPrice);
+        
+        // Update previous prices for next iteration
+        if (buyData.get("topPrice") != null) {
+            previousBidTopPrice = (Double) buyData.get("topPrice");
+        }
+        if (sellData.get("topPrice") != null) {
+            previousAskTopPrice = (Double) sellData.get("topPrice");
+        }
+        
+        return Map.of(
+                "buyData", buyData,
+                "sellData", sellData
+        );
+    }
+    
+    private Map<String, Object> calculateSideData(List<Map<String, Object>> orders, boolean isBuySide, Double previousTopPrice) {
+        if (orders == null || orders.isEmpty()) {
+            Map<String, Object> result = new java.util.HashMap<>();
+            result.put("topPrice", null);
+            result.put("priceChange", null);
+            result.put("priceChangePercent", null);
+            result.put("totalVolume", 0.0);
+            return result;
+        }
+        
+        // Find best price (highest for bids, lowest for asks)
+        OptionalDouble priceOpt = orders.stream()
+                .mapToDouble(order -> ((Number) order.get("price")).doubleValue())
+                .reduce(isBuySide ? Double::max : Double::min);
+        
+        Double topPrice = priceOpt.isPresent() ? priceOpt.getAsDouble() : null;
+        
+        // Calculate total volume for this side: sum of (price * size) for orders at top price only
+        double totalVolume = 0.0;
+        if (topPrice != null) {
+            totalVolume = orders.stream()
+                    .filter(order -> {
+                        double price = ((Number) order.get("price")).doubleValue();
+                        return Math.abs(price - topPrice) < 0.001; // Match orders at top price
+                    })
+                    .mapToDouble(order -> {
+                        double price = ((Number) order.get("price")).doubleValue();
+                        double size = ((Number) order.get("size")).doubleValue();
+                        return price * size;
+                    })
+                    .sum(); 
+        }
+        
+        // Calculate price change if we have previous data
+        Double priceChange = null;
+        Double priceChangePercent = null;
+        
+        if (previousTopPrice != null && topPrice != null && !previousTopPrice.equals(topPrice)) {
+            priceChange = topPrice - previousTopPrice;
+            priceChangePercent = (priceChange / previousTopPrice) * 100.0;
+        }
+        
+        Map<String, Object> result = new java.util.HashMap<>();
+        result.put("topPrice", topPrice);
+        result.put("priceChange", priceChange);
+        result.put("priceChangePercent", priceChangePercent);
+        result.put("totalVolume", Math.round(totalVolume));
+        return result;
+    }
+    
+    private Map<String, Object> getEmptyHeaderInfo() {
+        Map<String, Object> emptySideData = new java.util.HashMap<>();
+        emptySideData.put("topPrice", null);
+        emptySideData.put("priceChange", null);
+        emptySideData.put("priceChangePercent", null);
+        emptySideData.put("totalVolume", 0.0);
+        
+        return Map.of(
+                "buyData", emptySideData,
+                "sellData", emptySideData
         );
     }
 }

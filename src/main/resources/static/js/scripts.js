@@ -63,6 +63,29 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize WebSocket connection
     initializeWebSocket();
     
+    // Add click listener for the blue bar to switch between buy/sell modes
+    const orderBookHeader = document.querySelector('.orderbook-header');
+    if (orderBookHeader) {
+        orderBookHeader.addEventListener('click', () => {
+            // Toggle between 'buy' and 'sell' mode
+            const currentMode = window.orderBookDisplayMode || 'buy';
+            window.orderBookDisplayMode = (currentMode === 'buy') ? 'sell' : 'buy';
+            
+            // Update display if we have current data
+            if (window.currentOrderbookData && window.currentOrderbookData.headerInfo) {
+                updateOrderbookHeader(window.currentOrderbookData.headerInfo);
+            }
+            
+            if (DEBUG) console.log("Switched to %s mode", window.orderBookDisplayMode);
+        });
+        
+        // Add cursor pointer to indicate it's clickable
+        orderBookHeader.style.cursor = 'pointer';
+    }
+    
+    // Initialize display mode to 'buy'
+    window.orderBookDisplayMode = 'buy';
+    
     // Add event listeners for order filtering dropdowns
     const buyOrdersFilter = document.getElementById('buy-orders-filter');
     const sellOrdersFilter = document.getElementById('sell-orders-filter');
@@ -170,6 +193,11 @@ function updateOrderbook(orderbookData) {
     
     // Update orderbook scrollbar state
     updateScrollbarState(maxOrderNumber);
+    
+    // Update orderbook header with side-specific information
+    if (orderbookData.headerInfo) {
+        updateOrderbookHeader(orderbookData.headerInfo);
+    }
     
     // Update yellow bar if data is available
     if (orderbookData.yellowBar) {
@@ -529,6 +557,52 @@ function populateNewsData(tabId, newsItems) {
         
         container.appendChild(row);
     });
+}
+
+function updateOrderbookHeader(headerInfo) {
+    const currentMode = window.orderBookDisplayMode || 'buy';
+    const sideData = currentMode === 'buy' ? headerInfo.buyData : headerInfo.sellData;
+    
+    // Update current side
+    const currentSide = (currentMode === 'buy') ? 'buy' : 'sell';
+
+    // Update current price
+    const currentPriceElement = document.querySelector('.current-price');
+    if (currentPriceElement && sideData.topPrice !== null) {
+        currentPriceElement.textContent = `Cur (top ${currentSide}): ${sideData.topPrice.toFixed(2)}`;
+    }
+    
+    // Update arrow and price change
+    const priceArrowElement = document.querySelector('.price-arrow');
+    const priceChangeElement = document.querySelector('.price-change');
+    
+    if (sideData.priceChange !== null && sideData.priceChangePercent !== null) {
+        // Show arrow and price change
+        if (priceArrowElement) {
+            priceArrowElement.textContent = sideData.priceChange >= 0 ? '▲' : '▼';
+            priceArrowElement.className = sideData.priceChange >= 0 ? 'price-arrow up' : 'price-arrow down';
+        }
+        
+        if (priceChangeElement) {
+            const changeSign = sideData.priceChange >= 0 ? '' : '';
+            priceChangeElement.textContent = `${changeSign}${Math.abs(sideData.priceChange).toFixed(2)} (${Math.abs(sideData.priceChangePercent).toFixed(2)}%)`;
+        }
+    } else {
+        // Hide arrow and price change when no change
+        if (priceArrowElement) {
+            priceArrowElement.textContent = '';
+            priceArrowElement.className = 'price-arrow';
+        }
+        if (priceChangeElement) {
+            priceChangeElement.textContent = '';
+        }
+    }
+    
+    // Update volume
+    const volumeValueElement = document.querySelector('.volume-value');
+    if (volumeValueElement && sideData.totalVolume !== null) {
+        volumeValueElement.textContent = sideData.totalVolume.toLocaleString();
+    }
 }
 
 function updateYellowBar(yellowBarData) {
