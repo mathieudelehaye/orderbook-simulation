@@ -24,6 +24,7 @@ public class DataService {
     // Store previous top prices for change calculation
     private Double previousBidTopPrice = null;
     private Double previousAskTopPrice = null;
+    private Double previousMiddlePrice = null;
 
     public DataService() {
         try {
@@ -52,7 +53,7 @@ public class DataService {
         // Calculate header info data
         Map<String, Object> headerInfo = calculateHeaderInfo(orderbook);
         
-        // Add yellow bar and header info to the response
+        // Add yellow bar and header info to the response (OHLC data now sent separately)
         Map<String, Object> response = new java.util.HashMap<>(orderbook);
         response.put("yellowBar", yellowBar);
         response.put("headerInfo", headerInfo);
@@ -69,7 +70,10 @@ public class DataService {
     }
 
     public Map<String, Object> getOhlcData() throws IOException {
-        return readJsonFile("data/ohlc-data.json", new TypeReference<Map<String, Object>>() {});
+        // Calculate OHLC data from current orderbook and trades data instead of reading from JSON
+        Map<String, Object> currentOrderbook = getOrderbookData();
+        Map<String, Object> calculatedOhlcData = calculateOhlcDataForPopulation(currentOrderbook);
+        return calculatedOhlcData;
     }
 
     public Map<String, Object> getTimeseriesData() throws IOException {
@@ -250,6 +254,201 @@ public class DataService {
         return Map.of(
                 "buyData", emptySideData,
                 "sellData", emptySideData
+        );
+    }
+    
+    private Map<String, Object> calculateOhlcData(Map<String, Object> orderbook) {
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> bids = (List<Map<String, Object>>) orderbook.get("bids");
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> asks = (List<Map<String, Object>>) orderbook.get("asks");
+        
+        if (bids == null || bids.isEmpty() || asks == null || asks.isEmpty()) {
+            return getEmptyOhlcData();
+        }
+        
+        // Get current trade data for OHLC calculation
+        Map<String, Object> currentTradeData = null;
+        try {
+            currentTradeData = getTradesData();
+        } catch (IOException e) {
+            return getEmptyOhlcData();
+        }
+        
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> trades = (List<Map<String, Object>>) currentTradeData.get("trades");
+        
+        // Calculate OHLC from 5 most recent trade prices
+        Map<String, Object> ohlcCandle = calculateOhlcFromTrades(trades);
+        
+        // Calculate current middle price (best bid + best ask) / 2
+        double bestBidPrice = bids.stream()
+                .mapToDouble(bid -> ((Number) bid.get("price")).doubleValue())
+                .max().orElse(0.0);
+        
+        double bestAskPrice = asks.stream()
+                .mapToDouble(ask -> ((Number) ask.get("price")).doubleValue())
+                .min().orElse(Double.MAX_VALUE);
+        
+        double currentMiddlePrice = (bestBidPrice + bestAskPrice) / 2.0;
+        
+        // Calculate Last Chg (change from previous middle price)
+        Double lastChg = null;
+        String lastChgDirection = null;
+        
+        if (previousMiddlePrice != null && !previousMiddlePrice.equals(currentMiddlePrice)) {
+            lastChg = currentMiddlePrice - previousMiddlePrice;
+            lastChgDirection = lastChg > 0 ? "up" : "down";
+        }
+        
+        // Update previous middle price for next iteration
+        previousMiddlePrice = currentMiddlePrice;
+        
+        // Calculate Spread (best ask - best bid)
+        double spread = bestAskPrice - bestBidPrice;
+        
+        // Calculate Sprd % = spread / (max ask price - min bid price)
+        double maxAskPrice = asks.stream()
+                .mapToDouble(ask -> ((Number) ask.get("price")).doubleValue())
+                .max().orElse(bestAskPrice);
+        
+        double minBidPrice = bids.stream()
+                .mapToDouble(bid -> ((Number) bid.get("price")).doubleValue())
+                .min().orElse(bestBidPrice);
+        
+        double spreadPercentage = (maxAskPrice - minBidPrice) > 0 ? 
+            (spread / (maxAskPrice - minBidPrice)) * 100.0 : 0.0;
+        
+        // Calculate total trades (sum of trade share numbers)
+        int totalTrades = trades != null ? trades.stream()
+                .mapToInt(trade -> {
+                    Object shares = trade.get("shares");
+                    return shares != null ? ((Number) shares).intValue() : 0;
+                })
+                .sum() : 0;
+        
+        // Get timestamp from orderbook or current time
+        String timestamp = (String) orderbook.get("timestamp");
+        if (timestamp == null) {
+            timestamp = java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss"));
+        }
+        
+        // Build result
+        Map<String, Object> result = new java.util.HashMap<>();
+        result.put("time", timestamp);
+        result.put("open", ohlcCandle.get("open"));
+        result.put("high", ohlcCandle.get("high"));
+        result.put("low", ohlcCandle.get("low"));
+        result.put("close", ohlcCandle.get("close"));
+        result.put("lastChg", lastChg);
+        result.put("lastChgDirection", lastChgDirection);
+        result.put("spread", spread);
+        result.put("spreadPercentage", spreadPercentage);
+        result.put("trades", totalTrades);
+        
+        return result;
+    }
+    
+    private Map<String, Object> calculateOhlcDataForPopulation(Map<String, Object> orderbook) {
+        // Get the raw OHLC data first
+        Map<String, Object> rawOhlcData = calculateOhlcData(orderbook);
+        
+        // Format it for populateOhlcData function
+        List<Map<String, Object>> data = new java.util.ArrayList<>();
+        
+        // Add Time
+        data.add(Map.of("label", "Time", "value", rawOhlcData.get("time")));
+        
+        // Add Last Chg with arrow
+        String lastChgValue = "--";
+        if (rawOhlcData.get("lastChg") != null && rawOhlcData.get("lastChgDirection") != null) {
+            Double lastChg = (Double) rawOhlcData.get("lastChg");
+            String direction = (String) rawOhlcData.get("lastChgDirection");
+            String arrow = direction.equals("up") ? " ↑" : direction.equals("down") ? " ↓" : "";
+            lastChgValue = String.format("%.2f%s", Math.abs(lastChg), arrow);
+        }
+        data.add(Map.of("label", "Last Chg", "value", lastChgValue));
+        
+        // Add Open
+        Double open = (Double) rawOhlcData.get("open");
+        data.add(Map.of("label", "Open", "value", open != null ? String.format("%.2f", open) : "--"));
+        
+        // Add Year (using open as placeholder)
+        data.add(Map.of("label", "Year", "value", open != null ? String.format("%.2f", open) : "--"));
+        
+        // Add High
+        Double high = (Double) rawOhlcData.get("high");
+        data.add(Map.of("label", "High", "value", high != null ? String.format("%.2f", high) : "--"));
+        
+        // Add VWAP (using close as placeholder)
+        Double close = (Double) rawOhlcData.get("close");
+        data.add(Map.of("label", "VWAP", "value", close != null ? String.format("%.2f", close) : "--"));
+        
+        // Add Low
+        Double low = (Double) rawOhlcData.get("low");
+        data.add(Map.of("label", "Low", "value", low != null ? String.format("%.2f", low) : "--"));
+        
+        // Add Trades
+        Integer trades = (Integer) rawOhlcData.get("trades");
+        data.add(Map.of("label", "Trades", "value", trades != null ? String.format("%,d", trades) : "--"));
+        
+        // Add Trd Hi (same as High)
+        data.add(Map.of("label", "Trd Hi", "value", high != null ? String.format("%.2f", high) : "--"));
+        
+        // Add Spread
+        Double spread = (Double) rawOhlcData.get("spread");
+        data.add(Map.of("label", "Spread", "value", spread != null ? String.format("%.2f", spread) : "--"));
+        
+        // Add Trd Lo (same as Low)
+        data.add(Map.of("label", "Trd Lo", "value", low != null ? String.format("%.2f", low) : "--"));
+        
+        // Add Sprd %
+        Double spreadPercentage = (Double) rawOhlcData.get("spreadPercentage");
+        data.add(Map.of("label", "Sprd %", "value", spreadPercentage != null ? String.format("%.2f%%", spreadPercentage) : "--%"));
+        
+        return Map.of("data", data);
+    }
+    
+    private Map<String, Object> calculateOhlcFromTrades(List<Map<String, Object>> trades) {
+        if (trades == null || trades.isEmpty()) {
+            return Map.of("open", 0.0, "high", 0.0, "low", 0.0, "close", 0.0);
+        }
+        
+        // Take the 5 most recent trade prices (or all if less than 5)
+        List<Double> recentPrices = trades.stream()
+                .limit(5)
+                .map(trade -> ((Number) trade.get("price")).doubleValue())
+                .collect(java.util.stream.Collectors.toList());
+        
+        if (recentPrices.isEmpty()) {
+            return Map.of("open", 0.0, "high", 0.0, "low", 0.0, "close", 0.0);
+        }
+        
+        double open = recentPrices.get(recentPrices.size() - 1); // First trade price (oldest)
+        double close = recentPrices.get(0); // Last trade price (newest)
+        double high = recentPrices.stream().mapToDouble(Double::doubleValue).max().orElse(0.0);
+        double low = recentPrices.stream().mapToDouble(Double::doubleValue).min().orElse(0.0);
+        
+        return Map.of(
+                "open", open,
+                "high", high, 
+                "low", low,
+                "close", close
+        );
+    }
+    
+    private Map<String, Object> getEmptyOhlcData() {
+        return Map.of(
+                "time", "00:00:00",
+                "open", 0.0,
+                "high", 0.0,
+                "low", 0.0,
+                "close", 0.0,
+                "lastChg", null,
+                "lastChgDirection", null,
+                "spread", 0.0,
+                "spreadPercentage", 0.0,
+                "trades", 0
         );
     }
 }

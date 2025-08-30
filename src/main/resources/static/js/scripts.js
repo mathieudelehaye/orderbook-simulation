@@ -1,4 +1,4 @@
-const DEBUG = true; // flip to false for prod
+const DEBUG = false; // flip to false for prod
 
 const maxOrdersBeforeScrolling = 22;
 
@@ -651,11 +651,11 @@ function updatePriceLevelBarFromOrderbook(bidOrders, askOrders) {
             });
         }
         
-        // Calculate total percentage to verify it adds up to 100%
-        const totalBidPercentage = priceLevelBarData.bidLevels ? 
-            priceLevelBarData.bidLevels.reduce((sum, level) => sum + (level.percentage || 0), 0) : 0;
-        const totalAskPercentage = priceLevelBarData.askLevels ? 
-            priceLevelBarData.askLevels.reduce((sum, level) => sum + (level.percentage || 0), 0) : 0;
+    // Calculate total percentage to verify it adds up to 100%
+    const totalBidPercentage = priceLevelBarData.bidLevels ? 
+    priceLevelBarData.bidLevels.reduce((sum, level) => sum + (level.percentage || 0), 0) : 0;
+    const totalAskPercentage = priceLevelBarData.askLevels ? 
+    priceLevelBarData.askLevels.reduce((sum, level) => sum + (level.percentage || 0), 0) : 0;
         const totalPercentage = totalBidPercentage + totalAskPercentage;
         
         console.log(`Total shares - Bids: ${(priceLevelBarData.totalBidShares || 0).toLocaleString()}, Asks: ${(priceLevelBarData.totalAskShares || 0).toLocaleString()}, All 10 Segments: ${(priceLevelBarData.totalSegmentShares || 0).toLocaleString()}`);
