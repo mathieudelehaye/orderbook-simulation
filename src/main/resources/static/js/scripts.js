@@ -203,6 +203,9 @@ function updateOrderbook(orderbookData) {
     if (orderbookData.yellowBar) {
         updateYellowBar(orderbookData.yellowBar);
     }
+    
+    // Update price level bar with filtered data
+    updatePriceLevelBarFromOrderbook(orderbookData.bids, orderbookData.asks);
 }
 
 function populateOrders(containerId, orders, side, midpoint) {
@@ -619,6 +622,204 @@ function updateYellowBar(yellowBarData) {
             cells[5].textContent = yellowBarData.askShareCount.toLocaleString();
             cells[6].textContent = yellowBarData.askOrderCount.toLocaleString();
         }
+    }
+}
+
+function updatePriceLevelBarFromOrderbook(bidOrders, askOrders) {
+    // Apply filtering to get the orders that are actually displayed
+    const filteredBids = applyOrderFiltering(bidOrders || [], 'bid');
+    const filteredAsks = applyOrderFiltering(askOrders || [], 'ask');
+    
+    // Calculate price level data from filtered orders
+    const priceLevelBarData = calculatePriceLevelBarData(filteredBids, filteredAsks);
+    
+    // Log percentage data
+    if (DEBUG) {
+        console.log('Price Level Bar Data (from filtered orders):', priceLevelBarData);
+        
+        if (priceLevelBarData.bidLevels) {
+            console.log('Top 5 Bid Levels:');
+            priceLevelBarData.bidLevels.forEach((level, index) => {
+                console.log(`  Bid ${5-index}: Price ${level.price?.toFixed(2)}, Shares ${(level.shareCount || 0).toLocaleString()}, Volume ${Math.round(level.volume || 0).toLocaleString()}, Percentage ${level.percentage?.toFixed(2)}%`);
+            });
+        }
+        
+        if (priceLevelBarData.askLevels) {
+            console.log('Top 5 Ask Levels:');
+            priceLevelBarData.askLevels.forEach((level, index) => {
+                console.log(`  Ask ${index+1}: Price ${level.price?.toFixed(2)}, Shares ${(level.shareCount || 0).toLocaleString()}, Volume ${Math.round(level.volume || 0).toLocaleString()}, Percentage ${level.percentage?.toFixed(2)}%`);
+            });
+        }
+        
+        // Calculate total percentage to verify it adds up to 100%
+        const totalBidPercentage = priceLevelBarData.bidLevels ? 
+            priceLevelBarData.bidLevels.reduce((sum, level) => sum + (level.percentage || 0), 0) : 0;
+        const totalAskPercentage = priceLevelBarData.askLevels ? 
+            priceLevelBarData.askLevels.reduce((sum, level) => sum + (level.percentage || 0), 0) : 0;
+        const totalPercentage = totalBidPercentage + totalAskPercentage;
+        
+        console.log(`Total shares - Bids: ${(priceLevelBarData.totalBidShares || 0).toLocaleString()}, Asks: ${(priceLevelBarData.totalAskShares || 0).toLocaleString()}, All 10 Segments: ${(priceLevelBarData.totalSegmentShares || 0).toLocaleString()}`);
+        console.log(`Percentage verification - Bids: ${totalBidPercentage.toFixed(2)}%, Asks: ${totalAskPercentage.toFixed(2)}%, Total: ${totalPercentage.toFixed(2)}% (should be 100.00%)`);
+        console.log(`Total volume: ${Math.round(priceLevelBarData.totalVolume || 0).toLocaleString()}`);
+    }
+    
+    const priceScaleContainer = document.querySelector('.price-scale-container');
+    if (!priceScaleContainer) return;
+    
+    const bidLevelsContainer = priceScaleContainer.querySelector('.bid-levels');
+    const askLevelsContainer = priceScaleContainer.querySelector('.ask-levels');
+    
+    if (!bidLevelsContainer || !askLevelsContainer) return;
+    
+    // Calculate total percentages for each side to set container widths
+    const totalBidPercentage = priceLevelBarData.bidLevels ? 
+        priceLevelBarData.bidLevels.reduce((sum, level) => sum + (level.percentage || 0), 0) : 0;
+    const totalAskPercentage = priceLevelBarData.askLevels ? 
+        priceLevelBarData.askLevels.reduce((sum, level) => sum + (level.percentage || 0), 0) : 0;
+    
+    // Set the width of the containers based on their total percentage
+    bidLevelsContainer.style.width = `${totalBidPercentage}%`;
+    askLevelsContainer.style.width = `${totalAskPercentage}%`;
+    
+    // Update bid levels (bid-level-5 to bid-level-1, where bid-level-1 is closest to spread)
+    const bidLevelElements = bidLevelsContainer.querySelectorAll('.price-level');
+    if (priceLevelBarData.bidLevels && bidLevelElements.length >= 5) {
+        // bidLevels array comes from backend in order: worst to best (bid5, bid4, bid3, bid2, bid1)
+        // We want to display them as: bid5, bid4, bid3, bid2, bid1 (left to right)
+        priceLevelBarData.bidLevels.forEach((level, index) => {
+            const element = bidLevelElements[index]; // index 0 = bid-level-5, index 4 = bid-level-1  
+            if (element) {
+                // Set width based on percentage relative to this container
+                const segmentPercentage = level.percentage || 0;
+                const relativeWidth = totalBidPercentage > 0 ? (segmentPercentage / totalBidPercentage) * 100 : 0;
+                element.style.width = `${Math.max(relativeWidth, 1)}%`; // Minimum 1% for visibility within container
+                
+                // Set color based on level (5-index gives us 5,4,3,2,1)
+                const levelNumber = 5 - index; // Convert array index to level number
+                element.className = `price-level bid-level-${levelNumber} ${getLevelColor(levelNumber)}`;
+                
+                // Add tooltip with volume info
+                element.title = `Bid Level ${levelNumber} - Price: ${level.price ? level.price.toFixed(2) : '0.00'}, Volume: ${Math.round(level.volume || 0).toLocaleString()}`;
+            }
+        });
+    }
+    
+    // Update ask levels (ask-level-1 to ask-level-5, where ask-level-1 is closest to spread)
+    const askLevelElements = askLevelsContainer.querySelectorAll('.price-level');
+    if (priceLevelBarData.askLevels && askLevelElements.length >= 5) {
+        // askLevels array comes from backend in order: best to worst (ask1, ask2, ask3, ask4, ask5)
+        // We want to display them as: ask1, ask2, ask3, ask4, ask5 (left to right)
+        priceLevelBarData.askLevels.forEach((level, index) => {
+            const element = askLevelElements[index]; // index 0 = ask-level-1, index 4 = ask-level-5
+            if (element) {
+                // Set width based on percentage relative to this container
+                const segmentPercentage = level.percentage || 0;
+                const relativeWidth = totalAskPercentage > 0 ? (segmentPercentage / totalAskPercentage) * 100 : 0;
+                element.style.width = `${Math.max(relativeWidth, 1)}%`; // Minimum 1% for visibility within container
+                
+                // Set color based on level (index+1 gives us 1,2,3,4,5)  
+                const levelNumber = index + 1; // Convert array index to level number
+                element.className = `price-level ask-level-${levelNumber} ${getLevelColor(levelNumber)}`;
+                
+                // Add tooltip with volume info
+                element.title = `Ask Level ${levelNumber} - Price: ${level.price ? level.price.toFixed(2) : '0.00'}, Volume: ${Math.round(level.volume || 0).toLocaleString()}`;
+            }
+        });
+    }
+}
+
+function calculatePriceLevelBarData(filteredBids, filteredAsks) {
+    // Get top 5 unique price levels for bids (highest prices first)
+    const bidPriceLevels = getTopPriceLevels(filteredBids, 'bid', 5);
+    
+    // Get top 5 unique price levels for asks (lowest prices first)  
+    const askPriceLevels = getTopPriceLevels(filteredAsks, 'ask', 5);
+    
+    // Calculate total shares across all 10 segments
+    const totalBidShares = bidPriceLevels.reduce((sum, level) => sum + level.shareCount, 0);
+    const totalAskShares = askPriceLevels.reduce((sum, level) => sum + level.shareCount, 0);
+    const totalSegmentShares = totalBidShares + totalAskShares;
+    
+    // Calculate percentages for each level
+    const bidLevels = bidPriceLevels.map(level => ({
+        ...level,
+        percentage: totalSegmentShares > 0 ? (level.shareCount / totalSegmentShares) * 100 : 0
+    }));
+    
+    const askLevels = askPriceLevels.map(level => ({
+        ...level,
+        percentage: totalSegmentShares > 0 ? (level.shareCount / totalSegmentShares) * 100 : 0
+    }));
+    
+    // Reverse bid levels for proper display order (bid5 to bid1)
+    bidLevels.reverse();
+    
+    const totalVolume = bidLevels.reduce((sum, level) => sum + level.volume, 0) +
+                       askLevels.reduce((sum, level) => sum + level.volume, 0);
+    
+    return {
+        bidLevels,
+        askLevels,
+        totalBidShares,
+        totalAskShares,
+        totalSegmentShares,
+        totalVolume
+    };
+}
+
+function getTopPriceLevels(orders, side, count) {
+    if (!orders || orders.length === 0) {
+        return Array(count).fill().map(() => ({ price: 0, shareCount: 0, volume: 0 }));
+    }
+    
+    // Group orders by price level
+    const priceLevels = new Map();
+    
+    orders.forEach(order => {
+        const price = order.price;
+        const size = order.size;
+        const volume = price * size;
+        
+        if (priceLevels.has(price)) {
+            const existing = priceLevels.get(price);
+            existing.shareCount += size;
+            existing.volume += volume;
+        } else {
+            priceLevels.set(price, {
+                price: price,
+                shareCount: size,
+                volume: volume
+            });
+        }
+    });
+    
+    // Sort price levels and take top 5
+    const sortedLevels = Array.from(priceLevels.values());
+    if (side === 'bid') {
+        // For bids, sort by price descending (highest first)
+        sortedLevels.sort((a, b) => b.price - a.price);
+    } else {
+        // For asks, sort by price ascending (lowest first)
+        sortedLevels.sort((a, b) => a.price - b.price);
+    }
+    
+    // Take top count levels, pad with empty levels if needed
+    const result = sortedLevels.slice(0, count);
+    while (result.length < count) {
+        result.push({ price: 0, shareCount: 0, volume: 0 });
+    }
+    
+    return result;
+}
+
+function getLevelColor(level) {
+    // Map bid levels to distinct colors - darker colors for closer to spread
+    switch (level) {
+        case 1: return 'order-dark-blue';
+        case 2: return 'order-blue';
+        case 3: return 'order-light-blue';
+        case 4: return 'order-lightest-blue';
+        default: return 'order-cyan';
     }
 }
 
