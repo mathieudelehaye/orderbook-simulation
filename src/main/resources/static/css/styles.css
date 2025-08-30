@@ -359,7 +359,7 @@
 
 .orderbook-panel {
   display: none;
-  height: calc(100% - 30px);
+  height: 68vh;
   margin-top: 16px;
 }
 
@@ -585,17 +585,52 @@
   overflow: hidden;
   border: 1px solid #ddd;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  height: 55.6vh;
 }
 
 .orderbook-table {
+  background-color: #F0F0F0;
   display: flex;
   height: 100%;
+  overflow-y: auto;
+}
+
+.orderbook-table::-webkit-scrollbar {
+  width: 8px;
+}
+
+.orderbook-table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.orderbook-table::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.orderbook-table::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.orderbook-table.scrollbar-disabled {
+  pointer-events: none;
+}
+
+.orderbook-table.scrollbar-disabled::-webkit-scrollbar-thumb {
+  background: #e9e9e9;
+  cursor: default;
+}
+
+.orderbook-table.scrollbar-disabled::-webkit-scrollbar-thumb:hover {
+  background: #e9e9e9;
 }
 
 .orderbook-columns {
   flex: 1;
   display: flex;
-  height: 100%;
+  min-height: fit-content;
 }
 
 .bid-column,
@@ -622,20 +657,13 @@
 
 .orders-container {
   flex: 1;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.orders-container::-webkit-scrollbar {
-  display: none;
+  overflow: visible;
 }
 
 .order-row {
   display: flex;
   padding: 4px;
   font-size: 0.75rem;
-  border-bottom: 1px solid #f0f0f0;
 }
 
 .order-cell {
@@ -645,13 +673,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.scrollbar-container {
-  width: 16px;
-  background: #f8f9fa;
-  border-left: 1px solid #ddd;
-  position: relative;
 }
 
 .scrollbar {
@@ -667,11 +688,30 @@
   opacity: 0.5;
 }
 
-.order-brown { background-color: rgb(139 69 19 / 10%); }
+.order-darkest-blue { background-color: rgb(0 0 139 / 40%); }
+.order-dark-blue { background-color: rgb(0 0 139 / 35%); }
+.order-blue { background-color: rgb(65 105 225 / 30%); }
+.order-light-blue { background-color: rgb(135 206 235 / 30%); }
+.order-lightest-blue { background-color: rgb(173 216 230 / 25%); }
+.order-cyan { background-color: rgb(0 255 255 / 25%); }
+.order-light-cyan { background-color: rgb(224 255 255 / 25%); }
+.order-lightest-pink { background-color: rgb(255 240 245 / 25%); }
+.order-light-pink { background-color: rgb(255 218 185 / 25%); }
 .order-pink { background-color: rgb(255 192 203 / 30%); }
 .order-dark-pink { background-color: rgb(255 105 180 / 30%); }
-.order-light-blue { background-color: rgb(135 206 235 / 30%); }
-.order-blue { background-color: rgb(65 105 225 / 30%); }
+.order-darker-pink { background-color: rgb(255 20 147 / 35%); }
+.order-red-pink { background-color: rgb(255 20 147 / 25%); }
+.order-light-brown { background-color: rgb(205 133 63 / 15%); }
+.order-brown { background-color: rgb(139 69 19 / 10%); }
+.order-dark-brown { background-color: rgb(101 67 33 / 15%); }
+.order-darker-brown { background-color: rgb(101 67 33 / 20%); }
+.order-darkest-brown { background-color: rgb(101 67 33 / 25%); }
+.order-maroon { background-color: rgb(128 0 0 / 30%); }
+.order-deep-maroon { background-color: rgb(128 0 0 / 35%); }
+
+.order-row-empty {
+  background-color: #F0F0F0;
+}
 
 .data-section {
   background: #fff;

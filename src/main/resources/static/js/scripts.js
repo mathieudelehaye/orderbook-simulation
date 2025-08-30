@@ -1,3 +1,7 @@
+const DEBUG = true; // flip to false for prod
+
+const maxOrdersBeforeScrolling = 22;
+
 let websocket = null;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -58,6 +62,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize WebSocket connection
     initializeWebSocket();
+    
+    // Add event listeners for order filtering dropdowns
+    const buyOrdersFilter = document.getElementById('buy-orders-filter');
+    const sellOrdersFilter = document.getElementById('sell-orders-filter');
+    
+    if (buyOrdersFilter) {
+        buyOrdersFilter.addEventListener('change', () => {
+            // Trigger orderbook refresh when filter changes
+            if (window.currentOrderbookData) {
+                updateOrderbook(window.currentOrderbookData);
+            }
+        });
+    }
+    
+    if (sellOrdersFilter) {
+        sellOrdersFilter.addEventListener('change', () => {
+            // Trigger orderbook refresh when filter changes  
+            if (window.currentOrderbookData) {
+                updateOrderbook(window.currentOrderbookData);
+            }
+        });
+    }
 })
 
 // submit Search
@@ -124,6 +150,11 @@ function handleWebSocketMessage(data) {
 }
 
 function updateOrderbook(orderbookData) {
+    if (DEBUG) console.log('Received from WebSocket:', orderbookData);
+
+    // Store current orderbook data globally for filtering
+    window.currentOrderbookData = orderbookData;
+    
     const bestBid = (orderbookData.bids || []).reduce((max, o) => Math.max(max, o.price), -Infinity);
     const bestAsk = (orderbookData.asks || []).reduce((min, o) => Math.min(min, o.price), Infinity);
 
@@ -135,6 +166,11 @@ function updateOrderbook(orderbookData) {
     populateOrders('bid-orders', orderbookData.bids, 'bid', midpoint);
     populateOrders('ask-orders', orderbookData.asks, 'ask', midpoint);
     
+    const maxOrderNumber = Math.max(getOrderCount('bid-orders'), getOrderCount('ask-orders'));
+    
+    // Update orderbook scrollbar state
+    updateScrollbarState(maxOrderNumber);
+    
     // Update yellow bar if data is available
     if (orderbookData.yellowBar) {
         updateYellowBar(orderbookData.yellowBar);
@@ -145,7 +181,11 @@ function populateOrders(containerId, orders, side, midpoint) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
     
-    orders.forEach(order => {
+    // Apply filtering based on dropdown selection
+    const filteredOrders = applyOrderFiltering(orders, side);
+    
+    // Add actual order rows
+    filteredOrders.forEach(order => {
         const orderRow = document.createElement('div');
 
         orderRow.className = `order-row ${getOrderColor(order.price, midpoint)}`;
@@ -168,18 +208,39 @@ function populateOrders(containerId, orders, side, midpoint) {
         
         container.appendChild(orderRow);
     });
+    if (DEBUG) console.log("%d orders in table on %s side from filtered input", container.childElementCount, side);
+}
+
+function getOrderCount(containerId) {
+    const container = document.getElementById(containerId);
+    return container.childElementCount;
 }
 
 function getOrderColor(price, spreadMid) {
     // Determine color based on price level proximity to spread
-    // Closer to spread = blue colors, further = pink/brown
+    // Colors change every 0.05 distance with doubled number of color nuances
     const distance = Math.round(Math.abs(price - spreadMid) * 100) / 100;
 
-    if (distance <= 0.1) return 'order-blue';
-    else if (distance <= 0.3) return 'order-light-blue';
-    else if (distance <= 0.5) return 'order-dark-pink';
-    else if (distance <= 0.7) return 'order-pink';
-    else return 'order-brown';
+    if (distance <= 0.05) return 'order-darkest-blue';
+    else if (distance <= 0.10) return 'order-dark-blue';
+    else if (distance <= 0.15) return 'order-blue';
+    else if (distance <= 0.20) return 'order-light-blue';
+    else if (distance <= 0.25) return 'order-lightest-blue';
+    else if (distance <= 0.30) return 'order-cyan';
+    else if (distance <= 0.35) return 'order-light-cyan';
+    else if (distance <= 0.40) return 'order-lightest-pink';
+    else if (distance <= 0.45) return 'order-light-pink';
+    else if (distance <= 0.50) return 'order-pink';
+    else if (distance <= 0.55) return 'order-dark-pink';
+    else if (distance <= 0.60) return 'order-darker-pink';
+    else if (distance <= 0.65) return 'order-red-pink';
+    else if (distance <= 0.70) return 'order-light-brown';
+    else if (distance <= 0.75) return 'order-brown';
+    else if (distance <= 0.80) return 'order-dark-brown';
+    else if (distance <= 0.85) return 'order-darker-brown';
+    else if (distance <= 0.90) return 'order-darkest-brown';
+    else if (distance <= 0.95) return 'order-maroon';
+    else return 'order-deep-maroon';
 }
 
 let timeseriesChart = null;
@@ -484,5 +545,29 @@ function updateYellowBar(yellowBarData) {
             cells[5].textContent = yellowBarData.askShareCount.toLocaleString();
             cells[6].textContent = yellowBarData.askOrderCount.toLocaleString();
         }
+    }
+}
+
+function applyOrderFiltering(orders, side) {
+    const dropdownId = side === 'bid' ? 'buy-orders-filter' : 'sell-orders-filter';
+    const selectedExchange = document.getElementById(dropdownId).value;
+    
+    const filteredOrders = (selectedExchange === 'All') ? orders : orders.filter(order => order.exchange === selectedExchange); 
+    if (DEBUG) console.log("%d orders filtered on %s side", filteredOrders.length, side);
+
+    return filteredOrders;
+}
+
+function updateScrollbarState(maxOrderNumber) {
+    const orderbookTable = document.querySelector('.orderbook-table');
+
+    if (maxOrderNumber > maxOrdersBeforeScrolling) {
+        if (DEBUG) console.log("Enabling scrollbar");
+        orderbookTable.classList.remove('scrollbar-disabled');
+        orderbookTable.style.overflowY = 'auto';
+    } else {
+        if (DEBUG) console.log("Disabling scrollbar");
+        orderbookTable.classList.add('scrollbar-disabled');
+        orderbookTable.style.overflowY = 'scroll';
     }
 }
