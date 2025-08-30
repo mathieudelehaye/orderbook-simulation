@@ -10,6 +10,14 @@ app_port: 8080
 
 # Orderbook Simulation
 
+🚀 **Live Demo**: [https://orderbook-simulation.onrender.com/](https://orderbook-simulation.onrender.com/)
+
+## Screenshots
+
+![Orderbook Interface](https://github.com/mathieudelehaye/orderbook-simulation/raw/main/screenshots/orderbook-main.png)
+![Price Chart View](https://github.com/mathieudelehaye/orderbook-simulation/raw/main/screenshots/price-chart.png)
+![OHLC Data Panel](https://github.com/mathieudelehaye/orderbook-simulation/raw/main/screenshots/ohlc-panel.png)
+
 A real-time orderbook visualization application built with Java Spring Boot and WebSocket.
 
 ## Features
