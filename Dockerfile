@@ -29,4 +29,4 @@ EXPOSE 8080
 ENV SPRING_PROFILES_ACTIVE=prod
 
 # Run the Spring Boot application
-CMD ["java", "-jar", "build/libs/orderbook-simulation-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-Dserver.port=${PORT:-8080}", "-jar", "build/libs/orderbook-simulation-0.0.1-SNAPSHOT.jar"]
